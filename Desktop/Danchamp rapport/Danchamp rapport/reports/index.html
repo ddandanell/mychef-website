@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp Decision Package</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="overview" data-report-title="DanChamp Decision Package Overview">
+  <header class="topbar">
+    <div>
+      <h1>DanChamp Decision Package</h1>
+      <div class="small muted">Interactive working reports for partner review, board review, scope alignment, and financial scrutiny.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-draft">Draft working set</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a class="active" href="index.html">Overview</a>
+            <a href="evidence-register.html">Evidence register</a>
+            <a href="partnership-alignment.html">Partnership alignment</a>
+            <a href="board-evaluation.html">Board evaluation</a>
+            <a href="system-specification.html">System specification</a>
+            <a href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#understanding">Project understanding</a>
+            <a href="#report-map">Reports to build</a>
+            <a href="#missing-questions">Highest-value open questions</a>
+            <a href="#development-order">Recommended build order</a>
+            <a href="#review-flow">Interactive review flow</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Current anchors</h3>
+          <div class="small muted">
+            Source package treated as authoritative: board PDF, partnership PDF, system PDF, operational plan, master reference DOCX, vision deck, and internal instructions.
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Working environment first</span>
+        <h2>One decision package, six linked HTML pages.</h2>
+        <p>
+          The package is designed to replace static file handoffs with a browser-based review flow: linked sections, named notes, per-section comments, and one shared evidence register to reduce metric drift and overclaiming.
+        </p>
+        <div class="chip-row">
+          <div class="metric">
+            <span class="metric-label">Current phase</span>
+            <span class="metric-value">Pre-Phase 1, pre-code</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Primary unresolved issue</span>
+            <span class="metric-value">Partnership and governance structure</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Decision posture</span>
+            <span class="metric-value">Invite review, not commitment</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="understanding" class="panel section">
+        <div class="section-head">
+          <h2>What the project appears to be</h2>
+          <span class="status-tag status-open">Source-based summary</span>
+        </div>
+        <div class="section-body">
+          <div class="two-col">
+            <div class="callout">
+              <h3>Core idea</h3>
+              <p>
+                DanChamp is being framed as a chamber operating platform with a two-layer model: a free discovery/community layer that drives acquisition and a paid chamber/business layer that handles members, events, payments, communication, reporting, and retention logic.
+              </p>
+            </div>
+            <div class="callout">
+              <h3>Immediate use case</h3>
+              <p>
+                The current package is not a launch asset. It is a staged decision set for Jacob, possible co-builders or investors, the DanCham board, and future technical collaborators.
+              </p>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>What is clear</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Platform status</td>
+                <td>Concept, documentation, and UX are substantially prepared; coding is intentionally not started.</td>
+                <td>Supports credibility, but also means there is still no operating proof.</td>
+              </tr>
+              <tr>
+                <td>Board ask</td>
+                <td>The board is asked to allow validation first, not commit capital.</td>
+                <td>Avoids overstating support and keeps governance language credible.</td>
+              </tr>
+              <tr>
+                <td>Partner ask</td>
+                <td>Jacob and others are being invited into a discussion about structure, not asked to rubber-stamp a final deal.</td>
+                <td>Prevents false certainty around alignment.</td>
+              </tr>
+              <tr>
+                <td>Business logic</td>
+                <td>License fees, event fees, conversion share, and optional modules are all in play.</td>
+                <td>Requires strong separation between confirmed economics and scenario logic.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="understanding" data-section-title="What the project appears to be"></div>
+        </div>
+      </section>
+
+      <section id="report-map" class="panel section">
+        <div class="section-head">
+          <h2>HTML reports that should exist</h2>
+          <span class="status-tag status-review">Bundle architecture</span>
+        </div>
+        <div class="section-body">
+          <div class="card-grid">
+            <div class="mini-card">
+              <span class="mini-label">Report 1</span>
+              <h3><a href="partnership-alignment.html">Partnership / investor / founder alignment</a></h3>
+              <p class="muted">Clarifies what exists, what does not, what partnership would need to solve, and which decisions stay open.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Report 2</span>
+              <h3><a href="board-evaluation.html">DanCham board evaluation</a></h3>
+              <p class="muted">Frames the concept for board review, with emphasis on governance, control, brand protection, data ownership, and low-risk first steps.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Report 3</span>
+              <h3><a href="system-specification.html">Full platform system specification</a></h3>
+              <p class="muted">Defines users, permissions, modules, flows, boundaries, phases, and architecture without pretending the build has already been de-risked.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Support page</span>
+              <h3><a href="business-model-financials.html">Business model and financial framework</a></h3>
+              <p class="muted">Supports the 3 core reports by separating scenario logic, capital framing, and unresolved financial assumptions.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Shared asset</span>
+              <h3><a href="evidence-register.html">Evidence register</a></h3>
+              <p class="muted">The common fact layer for source provenance, exact figures, open decisions, and contradictions.</p>
+            </div>
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="report-map" data-section-title="HTML reports that should exist"></div>
+        </div>
+      </section>
+
+      <section id="missing-questions" class="panel section">
+        <div class="section-head">
+          <h2>Highest-value missing questions</h2>
+          <span class="status-tag status-risk">Needs resolution</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Should version 1 stay as a lightweight browser-based review tool with local note persistence and JSON sharing, or is true shared multi-user storage required immediately?</li>
+            <li>Which report must be reviewed first in a real meeting context: partner alignment, board evaluation, technical scope, or financial model?</li>
+            <li>Which funnel assumption is canonical for the private layer: 2% annual free-to-business conversion from workshop notes, or 5-8% / 6% conversion from existing projections?</li>
+            <li>Should the next real-world conversation be framed as a DanCham pilot opportunity, or as the first step inside a much larger Nordic regional platform thesis?</li>
+          </ol>
+          <div class="note">
+            The new pasted source adds useful narrative and funnel ideas, but it also introduces assumptions that conflict with earlier materials. Those conflicts are captured in the evidence register instead of being silently merged.
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="missing-questions" data-section-title="Highest-value missing questions"></div>
+        </div>
+      </section>
+
+      <section id="development-order" class="panel section">
+        <div class="section-head">
+          <h2>Recommended order of development</h2>
+          <span class="status-tag status-ok">Sequenced</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Work item</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Evidence register</td>
+                <td>Reduces contradictions before report drafting.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Shared review shell</td>
+                <td>Keeps comments, navigation, and status logic consistent across all pages.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Partnership alignment</td>
+                <td>Most exposed to external conversations and strongest place to challenge assumptions early.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Board evaluation</td>
+                <td>Reuses core facts but requires more careful governance framing.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>System specification</td>
+                <td>Locks scope, boundaries, and dependencies before financial polishing.</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Financial framework</td>
+                <td>Should only settle after scope and staged rollout logic are coherent.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="development-order" data-section-title="Recommended order of development"></div>
+        </div>
+      </section>
+
+      <section id="review-flow" class="panel section">
+        <div class="section-head">
+          <h2>How the interactive review and comment flow works</h2>
+          <span class="status-tag status-open">V1 implemented</span>
+        </div>
+        <div class="section-body">
+          <div class="three-col">
+            <div class="mini-card">
+              <span class="mini-label">Navigation</span>
+              <p>Each page includes a clickable report map and a section-level table of contents.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Section review</span>
+              <p>Every major section has its own note thread with reviewer name, note type, status, and timestamp.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Portability</span>
+              <p>Notes save in-browser and can be exported or imported as JSON for handoff and review continuity.</p>
+            </div>
+          </div>
+
+          <details open>
+            <summary>Why this V1 approach</summary>
+            <p>
+              It keeps the package immediately usable as static files while preserving a path to backend persistence later. The report structure does not depend on a framework or a server.
+            </p>
+          </details>
+          <details>
+            <summary>What would need to change for multi-user persistence</summary>
+            <p>
+              Only the storage layer. The section identifiers, comment schema, and report layout can stay as they are and later write to a database or API instead of localStorage.
+            </p>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="review-flow" data-section-title="How the interactive review and comment flow works"></div>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

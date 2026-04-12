@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp Business Model and Financial Framework</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="business-model-financials" data-report-title="DanChamp Business Model and Financial Framework">
+  <header class="topbar">
+    <div>
+      <h1>Business Model and Financial Framework</h1>
+      <div class="small muted">Working financial report for the founder and strategic partners. IDR-first by default.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-review">Scenario draft</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a href="index.html">Overview</a>
+            <a href="evidence-register.html">Evidence register</a>
+            <a href="partnership-alignment.html">Partnership alignment</a>
+            <a href="board-evaluation.html">Board evaluation</a>
+            <a href="system-specification.html">System specification</a>
+            <a class="active" href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#summary">Executive summary</a>
+            <a href="#revenue-logic">Revenue logic</a>
+            <a href="#pricing">Pricing and packaging</a>
+            <a href="#cost-structure">Cost structure</a>
+            <a href="#scenario-table">Scenario table</a>
+            <a href="#validation-needs">Validation needs</a>
+            <a href="#html-structure">HTML structure</a>
+            <a href="#interaction-flow">Interaction flow</a>
+            <a href="#open-questions">Open questions</a>
+            <a href="#change-log">Change log</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Do not present projections as settled economics</span>
+        <h2>The model is promising, but several revenue paths are still being blended together.</h2>
+        <p>
+          This report separates the chamber SaaS model, the hybrid membership model, the regional market thesis, and any venture-style capital framing. Otherwise the numbers would look stronger than the evidence currently supports.
+        </p>
+        <div class="chip-row">
+          <div class="metric">
+            <span class="metric-label">Default currency</span>
+            <span class="metric-value">IDR</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Preliminary chamber license</span>
+            <span class="metric-value">IDR 15-25M / year</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Key unresolved driver</span>
+            <span class="metric-value">Conversion and adoption assumptions</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="panel section">
+        <div class="section-head">
+          <h2>Executive summary</h2>
+          <span class="status-tag status-open">Financial decision support</span>
+        </div>
+        <div class="section-body">
+          <div class="meta-grid">
+            <div class="callout">
+              <h3>Objective</h3>
+              <p>Show realistic revenue paths, pricing logic, cost structure, and validation priorities without collapsing all upside cases into one model.</p>
+            </div>
+            <div class="callout">
+              <h3>Core message</h3>
+              <p>There is more than one monetization model in the source pack, and they should be kept analytically separate until validation resolves which path is primary.</p>
+            </div>
+            <div class="callout">
+              <h3>Risks / concerns</h3>
+              <p>Mixed revenue architectures, unclear conversion assumptions, and different phase scopes being quoted together.</p>
+            </div>
+            <div class="callout">
+              <h3>Decision this supports</h3>
+              <p>Which financial model should guide partner conversations and Phase 0 / Phase 1 planning.</p>
+            </div>
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="summary" data-section-title="Executive summary"></div>
+        </div>
+      </section>
+
+      <section id="revenue-logic" class="panel section">
+        <div class="section-head">
+          <h2>Revenue logic currently present in the source pack</h2>
+          <span class="status-tag status-review">Needs consolidation</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Model lane</th>
+                <th>Revenue streams</th>
+                <th>Use case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chamber-first SaaS lane</td>
+                <td>Annual chamber license, event transaction fee, conversion share, paid modules</td>
+                <td>Best fit for board and partner discussions today</td>
+              </tr>
+              <tr>
+                <td>Hybrid membership lane</td>
+                <td>Individual business memberships, premium memberships, corporate tiers, events</td>
+                <td>More visible in the master reference and retention logic</td>
+              </tr>
+              <tr>
+                <td>Scale platform lane</td>
+                <td>Freemium growth, plus profiles, advertising / visibility, private group fees, future SaaS bundles</td>
+                <td>Vision upside, not near-term operating base</td>
+              </tr>
+              <tr>
+                <td>Regional investor-thesis lane</td>
+                <td>46 organizations, 100-170K Nordic diaspora, 42-85K private pool, 2-3% conversion framing, venture-style capital raise and milestone gates</td>
+                <td>Useful for long-range investment narrative, not for near-term chamber planning</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            Recommendation: treat the chamber-first lane as the near-term decision model, the hybrid lane as a structured extension, and the scale lane as upside rather than base-case planning.
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="revenue-logic" data-section-title="Revenue logic currently present in the source pack"></div>
+        </div>
+      </section>
+
+      <section id="pricing" class="panel section">
+        <div class="section-head">
+          <h2>Pricing and packaging to keep visible</h2>
+          <span class="status-tag status-open">Source-backed but not final</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Current working price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chamber license</td>
+                <td>IDR 15-25M per year</td>
+                <td>Preliminary, validation-dependent</td>
+              </tr>
+              <tr>
+                <td>Event transaction fee</td>
+                <td>3-7%</td>
+                <td>Assumption only</td>
+              </tr>
+              <tr>
+                <td>Individual business membership</td>
+                <td>IDR 1.8M per year</td>
+                <td>Appears in master reference; not yet validated as primary model</td>
+              </tr>
+              <tr>
+                <td>Corporate Basic</td>
+                <td>IDR 10M per year</td>
+                <td>Useful for scenario testing, not a committed offer</td>
+              </tr>
+              <tr>
+                <td>Corporate Growth</td>
+                <td>IDR 20M per year</td>
+                <td>Useful for scenario testing, not a committed offer</td>
+              </tr>
+              <tr>
+                <td>Corporate Partner</td>
+                <td>IDR 35-60M per year</td>
+                <td>Upside tier only until validated</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="pricing" data-section-title="Pricing and packaging to keep visible"></div>
+        </div>
+      </section>
+
+      <section id="cost-structure" class="panel section">
+        <div class="section-head">
+          <h2>Cost structure and investment framing</h2>
+          <span class="status-tag status-risk">Scope-sensitive</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Cost bucket</th>
+                <th>Working source signal</th>
+                <th>Use guidance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Validation</td>
+                <td>IDR 5-10M</td>
+                <td>Use as Phase 0 cost anchor.</td>
+              </tr>
+              <tr>
+                <td>MVP build</td>
+                <td>IDR 100-165M</td>
+                <td>Near-term build estimate.</td>
+              </tr>
+              <tr>
+                <td>Total Phase 0-2</td>
+                <td>IDR 120-200M</td>
+                <td>Use only when discussing validation through pilot, not long-range scale.</td>
+              </tr>
+              <tr>
+                <td>Extended 18-month investment</td>
+                <td>IDR 345M-605M in master reference</td>
+                <td>Separate this clearly as later-phase capital need.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="cost-structure" data-section-title="Cost structure and investment framing"></div>
+        </div>
+      </section>
+
+      <section id="scenario-table" class="panel section">
+        <div class="section-head">
+          <h2>Scenario table</h2>
+          <span class="status-tag status-review">Recommended frame</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>What it assumes</th>
+                <th>Why it is useful</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Conservative</td>
+                <td>Regional market report defines this as 5 organization customers, 200 professional private users, 500 community users, 4,000 free users, and 40 events, for about IDR 1.58B annual revenue. Near-term board or pilot documents should not present this as already validated.</td>
+                <td>Best for disciplined planning and partner trust.</td>
+              </tr>
+              <tr>
+                <td>Base</td>
+                <td>Regional market report defines this as 15 organization customers, 300 professional private users, 600 community users, 8,000 free users, 60 events, and group fees, for about IDR 2.934B annual revenue.</td>
+                <td>Useful for evaluating build attractiveness, not for presenting as guaranteed outcome.</td>
+              </tr>
+              <tr>
+                <td>Optimistic</td>
+                <td>Hybrid and regional platform scaling assumptions from the vision, master reference, and Nordic market report, including 30 organizations, 1,500 paying private users, 20,000 free users, and IDR 14B Stage 1 capital framing.</td>
+                <td>Useful as upside discussion only.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="scenario-table" data-section-title="Scenario table"></div>
+        </div>
+      </section>
+
+      <section id="validation-needs" class="panel section">
+        <div class="section-head">
+          <h2>What must be validated before stronger financial claims are made</h2>
+          <span class="status-tag status-open">Critical validation list</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Real willingness to pay for the chamber license range.</li>
+            <li>Actual event fee tolerance and payment-provider economics.</li>
+            <li>Whether the product is fundamentally chamber SaaS first or hybrid membership first.</li>
+            <li>Realistic free-user acquisition cost and conversion range.</li>
+            <li>Corporate reporting value: does it actually support renewals?</li>
+            <li>Whether the regional platform thesis supports a venture-scale capital story, or whether the first step should remain self-contained and smaller.</li>
+          </ol>
+
+          <div class="note">
+            The Nordic market report introduces a much larger capital case: IDR 56B pre-money, IDR 14B Stage 1 investment, 18-month runway, and binary milestone gates. Treat that as a separate financing hypothesis until the DanCham-first path proves enough traction to justify it.
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="validation-needs" data-section-title="What must be validated before stronger financial claims are made"></div>
+        </div>
+      </section>
+
+      <section id="html-structure" class="panel section">
+        <div class="section-head">
+          <h2>HTML structure recommendation</h2>
+          <span class="status-tag status-ok">Ready pattern</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li>Open with the model-splitting logic so reviewers see where assumptions are mixed.</li>
+            <li>Use scenario tables and assumption blocks, not a single heroic projection.</li>
+            <li>Attach section notes directly to pricing, scenario, and validation areas so debate stays scoped.</li>
+            <li>Link every major number back to the evidence register.</li>
+          </ul>
+
+          <div class="comment-thread" data-comment-thread data-section-id="html-structure" data-section-title="HTML structure recommendation"></div>
+        </div>
+      </section>
+
+      <section id="interaction-flow" class="panel section">
+        <div class="section-head">
+          <h2>Interaction and comment flow recommendation</h2>
+          <span class="status-tag status-open">Financial review workflow</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Reviewers jump to revenue logic, scenario assumptions, or capital framing and leave notes exactly where confidence breaks down.</li>
+            <li>Scenario objections should be tagged as concern, while data requests should be tagged as question.</li>
+            <li>Resolved financial assumptions should be logged as new resolved notes so the decision trail stays visible.</li>
+          </ol>
+
+          <div class="comment-thread" data-comment-thread data-section-id="interaction-flow" data-section-title="Interaction and comment flow recommendation"></div>
+        </div>
+      </section>
+
+      <section id="open-questions" class="panel section">
+        <div class="section-head">
+          <h2>Open questions</h2>
+          <span class="status-tag status-risk">Still open</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Which monetization lane is primary in the first 12 months: chamber SaaS, hybrid membership, or a staged blend?</td>
+                <td>This determines how serious the current Year 3 scenarios really are.</td>
+              </tr>
+              <tr>
+                <td>Should the regional investor thesis stay out of near-term partnership conversations until pilot data exists?</td>
+                <td>Prevents early capital framing from outrunning the first proof point.</td>
+              </tr>
+              <tr>
+                <td>Which user acquisition and conversion range is trusted enough to drive the base case?</td>
+                <td>The model still contains materially different funnel assumptions.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="open-questions" data-section-title="Open questions"></div>
+        </div>
+      </section>
+
+      <section id="change-log" class="panel section">
+        <div class="section-head">
+          <h2>Change log</h2>
+          <span class="status-tag status-draft">Static editorial log</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li><strong>Draft v0.1:</strong> Created scenario shell and separated revenue lanes.</li>
+            <li><strong>Draft v0.2:</strong> Added Nordic regional market thesis and capital framing as distinct support logic.</li>
+            <li><strong>Draft v0.3:</strong> Added open questions, financial review workflow, and support-page positioning relative to the 3 core reports.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

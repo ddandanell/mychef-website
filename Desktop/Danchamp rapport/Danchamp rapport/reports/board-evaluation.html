@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp Board Evaluation Report</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="board-evaluation" data-report-title="DanChamp Board Evaluation Report">
+  <header class="topbar">
+    <div>
+      <h1>DanCham Board Evaluation</h1>
+      <div class="small muted">Board-facing review document that explains the proposal without overselling it.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-review">Draft for board review</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a href="index.html">Overview</a>
+            <a href="evidence-register.html">Evidence register</a>
+            <a href="partnership-alignment.html">Partnership alignment</a>
+            <a class="active" href="board-evaluation.html">Board evaluation</a>
+            <a href="system-specification.html">System specification</a>
+            <a href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#summary">Executive summary</a>
+            <a href="#proposal-boundary">What is and is not proposed</a>
+            <a href="#why-now">Why this matters now</a>
+            <a href="#governance">Governance and control</a>
+            <a href="#risk-balance">Risk of action vs inaction</a>
+            <a href="#phase-zero">Low-risk first phase</a>
+            <a href="#draft-content">Current chapter draft</a>
+            <a href="#html-structure">HTML structure</a>
+            <a href="#interaction-flow">Interaction flow</a>
+            <a href="#open-questions">Open questions</a>
+            <a href="#change-log">Change log</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Board support, not pressure</span>
+        <h2>Help the board think clearly about whether a pilot path deserves validation.</h2>
+        <p>
+          This report explains the proposal in governance-safe language: what the chamber keeps, what changes, what the board is being asked to allow, and why doing nothing also has consequences.
+        </p>
+        <div class="chip-row">
+          <div class="metric">
+            <span class="metric-label">Audience</span>
+            <span class="metric-value">DanCham board</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Primary decision</span>
+            <span class="metric-value">Allow validation and later review results?</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Forbidden implication</span>
+            <span class="metric-value">No automatic rollout commitment</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="panel section">
+        <div class="section-head">
+          <h2>Executive summary</h2>
+          <span class="status-tag status-open">Board decision support</span>
+        </div>
+        <div class="section-body">
+          <div class="meta-grid">
+            <div class="callout">
+              <h3>Objective</h3>
+              <p>Give the board a credible, balanced basis for deciding whether DanCham should participate in low-risk validation.</p>
+            </div>
+            <div class="callout">
+              <h3>Core message</h3>
+              <p>The platform is a possible response to structural chamber challenges, but it should be judged through staged evidence, not enthusiasm.</p>
+            </div>
+            <div class="callout">
+              <h3>Main concerns</h3>
+              <p>Brand control, member data, governance, financial exposure, operating burden, and whether the platform changes chamber identity.</p>
+            </div>
+            <div class="callout">
+              <h3>Recommended posture</h3>
+              <p>Permit Phase 0 validation first, then review evidence before any build or pilot decision.</p>
+            </div>
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="summary" data-section-title="Executive summary"></div>
+        </div>
+      </section>
+
+      <section id="proposal-boundary" class="panel section">
+        <div class="section-head">
+          <h2>What is being proposed, and what is not</h2>
+          <span class="status-tag status-risk">Boundary must be explicit</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Board interpretation</th>
+                <th>Correct framing</th>
+                <th>Incorrect framing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Validation phase</td>
+                <td>Allow member interviews and value assessment at zero chamber cost.</td>
+                <td>"The board is approving the platform."</td>
+              </tr>
+              <tr>
+                <td>Pilot possibility</td>
+                <td>Review results later and decide whether a pilot makes sense.</td>
+                <td>"The chamber is now locked into being the first customer."</td>
+              </tr>
+              <tr>
+                <td>Platform relationship</td>
+                <td>Consider a tool that supports chamber operations and member value.</td>
+                <td>"The platform replaces the board or existing relationships."</td>
+              </tr>
+              <tr>
+                <td>Regional platform thesis</td>
+                <td>The broader Nordic market opportunity may exist, but it is not the immediate board decision.</td>
+                <td>"The board is being asked to approve a regional investor-scale platform strategy today."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="proposal-boundary" data-section-title="What is being proposed, and what is not"></div>
+        </div>
+      </section>
+
+      <section id="why-now" class="panel section">
+        <div class="section-head">
+          <h2>Why this matters now</h2>
+          <span class="status-tag status-review">Context, not hype</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Signal</th>
+                <th>Why it matters</th>
+                <th>How to use it carefully</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chamber operations remain manual</td>
+                <td>Manual admin slows growth, weakens onboarding, and limits measurement.</td>
+                <td>Keep the discussion operational, not ideological.</td>
+              </tr>
+              <tr>
+                <td>Members expect easier digital interaction</td>
+                <td>Event registration, payment, reminders, and value visibility increasingly shape retention.</td>
+                <td>Avoid claiming that digital alone will solve engagement.</td>
+              </tr>
+              <tr>
+                <td>DanCham has a small active base today</td>
+                <td>Small scale makes efficiency and proof of value more important.</td>
+                <td>Use it to explain urgency, not to criticize the chamber.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="why-now" data-section-title="Why this matters now"></div>
+        </div>
+      </section>
+
+      <section id="governance" class="panel section">
+        <div class="section-head">
+          <h2>Governance, control, and board-level concerns</h2>
+          <span class="status-tag status-open">Critical review area</span>
+        </div>
+        <div class="section-body">
+          <div class="two-col">
+            <div class="mini-card">
+              <span class="mini-label">Brand and member control</span>
+              <p>The board should retain control over who qualifies as a member, which events the chamber runs, and how chamber communication is governed.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Data ownership</span>
+              <p>Chamber member data should remain chamber-owned, exportable, and contractually protected.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Financial exposure</span>
+              <p>Phase 0 should remain zero-cost to the chamber; later pricing must stay preliminary until validated.</p>
+            </div>
+            <div class="mini-card">
+              <span class="mini-label">Strategic protection</span>
+              <p>The report shows how a chamber can stop, exit, or decline later phases without losing its autonomy.</p>
+            </div>
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="governance" data-section-title="Governance, control, and board-level concerns"></div>
+        </div>
+      </section>
+
+      <section id="risk-balance" class="panel section">
+        <div class="section-head">
+          <h2>Risk of doing it versus risk of not doing it</h2>
+          <span class="status-tag status-review">Balanced framing</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>Main risk</th>
+                <th>Mitigation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Allow validation</td>
+                <td>Board spends attention on a concept that may not validate.</td>
+                <td>Keep cost at zero, scope tight, and decision gates explicit.</td>
+              </tr>
+              <tr>
+                <td>Reject too early</td>
+                <td>Miss the chance to shape a tool that may solve known chamber constraints.</td>
+                <td>Review evidence first before ruling out the idea.</td>
+              </tr>
+              <tr>
+                <td>Approve too broadly</td>
+                <td>Creates the impression of endorsement without sufficient data.</td>
+                <td>Use formal Phase 0 / Phase 1 boundaries and board checkpoints.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="risk-balance" data-section-title="Risk of doing it versus risk of not doing it"></div>
+        </div>
+      </section>
+
+      <section id="phase-zero" class="panel section">
+        <div class="section-head">
+          <h2>First low-risk phase</h2>
+          <span class="status-tag status-ok">Board-safe path</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Allow 15-20 member interviews and a structured value assessment.</li>
+            <li>Provide introductions to 5-10 members where useful.</li>
+            <li>Review the results as a board before any pilot decision.</li>
+            <li>Use the results to decide whether there is real demand for Phase 1.</li>
+          </ol>
+
+          <div class="note">
+            The board report keeps returning to one point: saying yes to validation is not the same as saying yes to rollout.
+          </div>
+          <div class="note">
+            It should also keep clear that large-scale investor framing, valuation logic, and 46-organization regional expansion are downstream possibilities, not the current board ask.
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="phase-zero" data-section-title="First low-risk phase"></div>
+        </div>
+      </section>
+
+      <section id="draft-content" class="panel section">
+        <div class="section-head">
+          <h2>Current chapter draft</h2>
+          <span class="status-tag status-draft">Editable board narrative</span>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>Chapter 1 - What the board is being asked to evaluate</summary>
+            <p>
+              Start with the boundary. The board is evaluating whether the concept deserves validation, not whether the full platform should be adopted today. This must be the clearest line in the entire document.
+            </p>
+          </details>
+          <details open>
+            <summary>Chapter 2 - What the current operating model struggles with</summary>
+            <p>
+              Show the structural problem without attacking the chamber: manual onboarding, limited data, weak proof of member value, and low operating leverage. The tone should be respectful and factual.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 3 - What the platform would change and what it would not</summary>
+            <p>
+              Explain that the platform digitizes workflows and improves visibility, but does not replace board judgment, chamber identity, or member-quality control.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 4 - Governance, control, and downside protection</summary>
+            <p>
+              Put data ownership, export rights, approval controls, and exit logic in plain sight. Board reviewers need the protection logic before they will trust the upside language.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 5 - Low-risk next step</summary>
+            <p>
+              Close by restating the Phase 0 path: interviews, value assessment, board review of results, then a separate decision about any pilot. That is the real ask.
+            </p>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="draft-content" data-section-title="Current chapter draft"></div>
+        </div>
+      </section>
+
+      <section id="html-structure" class="panel section">
+        <div class="section-head">
+          <h2>HTML structure recommendation</h2>
+          <span class="status-tag status-ok">Ready pattern</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li>Start with an executive summary and a "what this does not mean" box.</li>
+            <li>Keep governance, data ownership, and financial exposure visible in the first screenful.</li>
+            <li>Use expandable sections for market data and risk analysis so the page stays readable in live meetings.</li>
+            <li>Include section-level comment areas for board concerns, edits, and formal questions.</li>
+          </ul>
+
+          <div class="comment-thread" data-comment-thread data-section-id="html-structure" data-section-title="HTML structure recommendation"></div>
+        </div>
+      </section>
+
+      <section id="interaction-flow" class="panel section">
+        <div class="section-head">
+          <h2>Interaction and comment flow recommendation</h2>
+          <span class="status-tag status-open">Board review workflow</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Board reviewer jumps straight to the proposal boundary and governance sections.</li>
+            <li>Questions about risk, control, and cost are logged at section level rather than collected in email chains.</li>
+            <li>Resolved questions stay visible in the review log so the board can see what changed between drafts.</li>
+          </ol>
+
+          <div class="comment-thread" data-comment-thread data-section-id="interaction-flow" data-section-title="Interaction and comment flow recommendation"></div>
+        </div>
+      </section>
+
+      <section id="open-questions" class="panel section">
+        <div class="section-head">
+          <h2>Open questions</h2>
+          <span class="status-tag status-risk">Still open</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Why the board should care</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Which members should be interviewed in Phase 0?</td>
+                <td>The result quality depends on whether the right member types are represented.</td>
+              </tr>
+              <tr>
+                <td>What would count as strong enough evidence for a pilot?</td>
+                <td>The board should agree on the test threshold before seeing the results.</td>
+              </tr>
+              <tr>
+                <td>What chamber protections must exist contractually before any later pilot?</td>
+                <td>Prevents the pilot decision from becoming structurally vague.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="open-questions" data-section-title="Open questions"></div>
+        </div>
+      </section>
+
+      <section id="change-log" class="panel section">
+        <div class="section-head">
+          <h2>Change log</h2>
+          <span class="status-tag status-draft">Static editorial log</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li><strong>Draft v0.1:</strong> Created board-safe shell with governance and note workflow.</li>
+            <li><strong>Draft v0.2:</strong> Added explicit separation between board validation ask and wider regional platform ambition.</li>
+            <li><strong>Draft v0.3:</strong> Added draft chapter map, open questions, and review workflow.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

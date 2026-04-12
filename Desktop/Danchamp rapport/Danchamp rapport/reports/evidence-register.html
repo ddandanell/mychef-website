@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp Evidence Register</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="evidence-register" data-report-title="DanChamp Evidence Register">
+  <header class="topbar">
+    <div>
+      <h1>DanChamp Evidence Register</h1>
+      <div class="small muted">Canonical source layer for figures, assumptions, provenance, and contradictions across the report set.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-review">Under review</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a href="index.html">Overview</a>
+            <a class="active" href="evidence-register.html">Evidence register</a>
+            <a href="partnership-alignment.html">Partnership alignment</a>
+            <a href="board-evaluation.html">Board evaluation</a>
+            <a href="system-specification.html">System specification</a>
+            <a href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#source-pack">Source pack</a>
+            <a href="#canonical-facts">Canonical facts</a>
+            <a href="#open-decisions">Open decisions</a>
+            <a href="#contradictions">Contradictions to resolve</a>
+            <a href="#claim-rules">Claim handling rules</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Use this before editing any report</span>
+        <h2>One evidence layer, three core reports, and support pages.</h2>
+        <p>
+          Every number, market claim, phase gate, and governance statement in the report bundle should trace back here. If a claim is not supported or conflicts with another source, it stays marked as provisional.
+        </p>
+      </section>
+
+      <section id="source-pack" class="panel section">
+        <div class="section-head">
+          <h2>Authoritative source pack used for this bundle</h2>
+          <span class="status-tag status-ok">Locked for v1</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Role in bundle</th>
+                <th>Trust level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DanChamp_Claude_Instructions.md</td>
+                <td>Exact headline figures, partner structure, open decisions, recommended stack, Go / No-Go criteria</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Report_1_Partnership.pdf</td>
+                <td>Partner-facing framing, current-state honesty, opportunity logic</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Report_2_Board.pdf</td>
+                <td>Board framing, governance boundaries, risk of yes / no discussion</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Report_3_System.pdf</td>
+                <td>Module, actor, stage, and workflow definition</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>DanChamp_Operationel_Plan_v2.pdf</td>
+                <td>Broader operating model, module packaging, pricing logic, onboarding, risk treatment</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>DanChamp_Master_Reference.docx</td>
+                <td>Most detailed financial and operational reference; useful for scenario logic and retention economics</td>
+                <td>High, but mixed with stretch projections</td>
+              </tr>
+              <tr>
+                <td>DanChamp_Vision (1).pptx</td>
+                <td>Long-range positioning and growth narrative</td>
+                <td>Medium; ambition-heavy</td>
+              </tr>
+              <tr>
+                <td>Nordic Community Platform market report (pasted source)</td>
+                <td>Regional diaspora thesis, 46-organization market case, scenario economics, investor-scale framing</td>
+                <td>Medium to high for market thesis, low for near-term certainty</td>
+              </tr>
+              <tr>
+                <td>Additional pasted notes</td>
+                <td>Founder narrative, funnel ideas, market-analysis prompts</td>
+                <td>Medium; useful but not canonical when conflicting</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="source-pack" data-section-title="Authoritative source pack used for this bundle"></div>
+        </div>
+      </section>
+
+      <section id="canonical-facts" class="panel section">
+        <div class="section-head">
+          <h2>Canonical figures and source-backed facts</h2>
+          <span class="status-tag status-open">Reusable across reports</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Current working figure</th>
+                <th>Use guidance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DanCham current members</td>
+                <td>~40</td>
+                <td>Safe to use as current-state context, not as audited membership count.</td>
+              </tr>
+              <tr>
+                <td>Events per year</td>
+                <td>~6</td>
+                <td>Use as directional baseline for current activity level.</td>
+              </tr>
+              <tr>
+                <td>Phase 0 budget</td>
+                <td>IDR 5-10M</td>
+                <td>Use for validation-phase framing only.</td>
+              </tr>
+              <tr>
+                <td>MVP budget</td>
+                <td>IDR 100-165M</td>
+                <td>Use as estimate, not commitment.</td>
+              </tr>
+              <tr>
+                <td>Total Phase 0-2 budget</td>
+                <td>IDR 120-200M in instructions; wider documents stretch higher depending on later phases</td>
+                <td>Keep phase scope explicit whenever quoting totals.</td>
+              </tr>
+              <tr>
+                <td>Per partner investment</td>
+                <td>IDR 100M</td>
+                <td>Use as proposed structure, not confirmed deal.</td>
+              </tr>
+              <tr>
+                <td>Chamber license</td>
+                <td>IDR 15-25M / year</td>
+                <td>Always label as preliminary and validation-dependent.</td>
+              </tr>
+              <tr>
+                <td>Event fee</td>
+                <td>3-7%</td>
+                <td>Use as operating assumption only.</td>
+              </tr>
+              <tr>
+                <td>Addressable chamber market</td>
+                <td>46 Nordic organizations in Asia</td>
+                <td>Use as the working expansion universe cited in internal materials.</td>
+              </tr>
+              <tr>
+                <td>Regional Nordic population thesis</td>
+                <td>~100-170K Nordics in Asia / MEA / AU; ~42-85K private individuals; ~22K conservative payers at 2-3% conversion</td>
+                <td>Use only in regional market-thesis or investor-upside sections, not as DanCham operating proof.</td>
+              </tr>
+              <tr>
+                <td>Go / No-Go review point</td>
+                <td>6 months after launch / pilot logic</td>
+                <td>Keep tied to adoption, engagement, corporate value, NPS, and new member signals.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="canonical-facts" data-section-title="Canonical figures and source-backed facts"></div>
+        </div>
+      </section>
+
+      <section id="open-decisions" class="panel section">
+        <div class="section-head">
+          <h2>Open decisions that must stay visibly open</h2>
+          <span class="status-tag status-risk">Do not collapse into certainty</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Decision</th>
+                <th>Why it matters</th>
+                <th>Where it affects the bundle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Legal entity: Indonesia vs Singapore</td>
+                <td>Changes payment rails, tax, governance, and operational setup.</td>
+                <td>Partnership, board, system, and financial reports.</td>
+              </tr>
+              <tr>
+                <td>Ownership allocation</td>
+                <td>Determines whether sweat equity, capital, and network contribution are being valued coherently.</td>
+                <td>Partnership and financial reports.</td>
+              </tr>
+              <tr>
+                <td>Revenue-share formula</td>
+                <td>Impacts incentives, chamber economics, and investor logic.</td>
+                <td>Partnership, board, and financial reports.</td>
+              </tr>
+              <tr>
+                <td>Decision rights / vetoes</td>
+                <td>Critical for founder autonomy, partner trust, and conflict prevention.</td>
+                <td>Partnership and governance framing.</td>
+              </tr>
+              <tr>
+                <td>IP ownership</td>
+                <td>Separates platform IP, chamber data, and brand rights.</td>
+                <td>Partnership, board, and system reports.</td>
+              </tr>
+              <tr>
+                <td>Exit terms</td>
+                <td>Shapes long-term alignment and protects future negotiations.</td>
+                <td>Partnership report and financial logic.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="open-decisions" data-section-title="Open decisions that must stay visibly open"></div>
+        </div>
+      </section>
+
+      <section id="contradictions" class="panel section">
+        <div class="section-head">
+          <h2>Contradictions and tension points to resolve</h2>
+          <span class="status-tag status-review">Cross-source cleanup required</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Issue</th>
+                <th>Conflicting inputs</th>
+                <th>Working handling rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Free-to-paid conversion</td>
+                <td>Pasted notes mention ~2% annual conversion; vision and other materials imply 5-8% or 6% assumptions.</td>
+                <td>Show as unresolved scenario range until validation data exists.</td>
+              </tr>
+              <tr>
+                <td>Private user acquisition target</td>
+                <td>Pasted notes mention minimum 100 new users monthly and also 1000+ ongoing; vision deck shows 4,000+ in first phase.</td>
+                <td>Use conservative monthly acquisition in financial scenarios; keep larger growth as upside only.</td>
+              </tr>
+              <tr>
+                <td>DanCham pilot vs regional platform thesis</td>
+                <td>Board and operational documents focus on low-risk validation and MVP budgets; Nordic market report adds a 46-organization, regional scale case plus IDR 14B Stage 1 investment and IDR 56B pre-money framing.</td>
+                <td>Never present the regional investor thesis as if it were the same decision as DanCham Phase 0 validation.</td>
+              </tr>
+              <tr>
+                <td>Budget totals</td>
+                <td>Instructions cite IDR 120-200M for Phase 0-2, while master reference shows much larger 18-month totals with later phases included.</td>
+                <td>Always state which phases are included and avoid blending them.</td>
+              </tr>
+              <tr>
+                <td>Strategic ambition</td>
+                <td>Vision deck stretches toward broader Europe-scale expat platform language; board material is intentionally narrow and cautious.</td>
+                <td>Use ambition language only where the audience benefits from long-range upside framing.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="contradictions" data-section-title="Contradictions and tension points to resolve"></div>
+        </div>
+      </section>
+
+      <section id="claim-rules" class="panel section">
+        <div class="section-head">
+          <h2>Claim handling rules for the full package</h2>
+          <span class="status-tag status-ok">Editorial standard</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Keep commitments conditional unless they are explicitly confirmed.</li>
+            <li>Separate facts, assumptions, scenarios, and recommendations in every report.</li>
+            <li>Do not use board-safe language and investor-upside language interchangeably.</li>
+            <li>Do not use regional market size or investor valuation logic to imply that the DanCham board is being asked to approve that scale of ambition now.</li>
+            <li>If a number is still validation-dependent, label it that way at point of use.</li>
+            <li>If a narrative is compelling but unsupported, either downgrade it to a hypothesis or remove it.</li>
+          </ol>
+
+          <div class="comment-thread" data-comment-thread data-section-id="claim-rules" data-section-title="Claim handling rules for the full package"></div>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

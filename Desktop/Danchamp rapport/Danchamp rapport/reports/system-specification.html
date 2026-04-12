@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp System Specification</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="system-specification" data-report-title="DanChamp Full Platform System Specification">
+  <header class="topbar">
+    <div>
+      <h1>Full Platform System Specification</h1>
+      <div class="small muted">Working system document for founder, partners, technical reviewers, and future developers.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-review">Draft technical brief</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a href="index.html">Overview</a>
+            <a href="evidence-register.html">Evidence register</a>
+            <a href="partnership-alignment.html">Partnership alignment</a>
+            <a href="board-evaluation.html">Board evaluation</a>
+            <a class="active" href="system-specification.html">System specification</a>
+            <a href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#summary">Executive summary</a>
+            <a href="#system-boundary">System boundary</a>
+            <a href="#actors">Actors and permissions</a>
+            <a href="#modules">Modules and phases</a>
+            <a href="#flows">Core flows</a>
+            <a href="#architecture">Architecture and dependencies</a>
+            <a href="#draft-content">Current chapter draft</a>
+            <a href="#html-structure">HTML structure</a>
+            <a href="#interaction-flow">Interaction flow</a>
+            <a href="#open-questions">Open questions</a>
+            <a href="#change-log">Change log</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Technical and strategic reference</span>
+        <h2>Show what the platform is, what it is not, and what each phase is responsible for proving.</h2>
+        <p>
+          This report stays concrete: user types, permissions, workflows, modules, boundaries, stack, dependencies, and rollout triggers. It does not promise production readiness where validation is still missing.
+        </p>
+        <div class="chip-row">
+          <div class="metric">
+            <span class="metric-label">Primary model</span>
+            <span class="metric-value">Two-layer platform</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Core comms layer</span>
+            <span class="metric-value">WhatsApp-first operations</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Critical caveat</span>
+            <span class="metric-value">No code exists yet</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="panel section">
+        <div class="section-head">
+          <h2>Executive summary</h2>
+          <span class="status-tag status-open">Scope framing</span>
+        </div>
+        <div class="section-body">
+          <div class="meta-grid">
+            <div class="callout">
+              <h3>Objective</h3>
+              <p>Explain the platform deeply enough that a future builder or reviewer can see the real module set, phase logic, and system constraints.</p>
+            </div>
+            <div class="callout">
+              <h3>Intended audience</h3>
+              <p>Founder, partners, technical decision-makers, and future developers.</p>
+            </div>
+            <div class="callout">
+              <h3>Core message</h3>
+              <p>This is chamber infrastructure with a growth layer attached, not just a new website.</p>
+            </div>
+            <div class="callout">
+              <h3>Main concern</h3>
+              <p>Scope is rich, so phase discipline matters more than feature ambition.</p>
+            </div>
+          </div>
+
+          <div class="comment-thread" data-comment-thread data-section-id="summary" data-section-title="Executive summary"></div>
+        </div>
+      </section>
+
+      <section id="system-boundary" class="panel section">
+        <div class="section-head">
+          <h2>System boundary</h2>
+          <span class="status-tag status-risk">Avoid scope blur</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Inside the platform</th>
+                <th>Outside the platform</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Member profiles, event workflows, communication, reporting, chamber admin controls, selective business networking, community content, and onboarding logic.</td>
+                <td>Board governance itself, the chamber's underlying legal structure, direct ownership decisions, and any promise of guaranteed growth.</td>
+              </tr>
+              <tr>
+                <td>Payment handling through approved providers and transaction reporting.</td>
+                <td>Direct custody of card data or replacement of third-party payment compliance.</td>
+              </tr>
+              <tr>
+                <td>Community and chamber operating tooling.</td>
+                <td>All-purpose social networking for every use case or full replacement of human relationship work.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="system-boundary" data-section-title="System boundary"></div>
+        </div>
+      </section>
+
+      <section id="actors" class="panel section">
+        <div class="section-head">
+          <h2>Actors, user types, and permissions</h2>
+          <span class="status-tag status-review">Needs implementation discipline</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Actor</th>
+                <th>Core permissions</th>
+                <th>Primary value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Private community user</td>
+                <td>Create profile, browse public content, join groups, attend community events, receive notifications.</td>
+                <td>Low-friction entry and content generation.</td>
+              </tr>
+              <tr>
+                <td>Business member</td>
+                <td>Access chamber business area, join paid events, message verified members, maintain full profile.</td>
+                <td>Network value and business relevance.</td>
+              </tr>
+              <tr>
+                <td>Corporate contact</td>
+                <td>View employee activity and corporate value reporting.</td>
+                <td>Proof of ROI and renewal justification.</td>
+              </tr>
+              <tr>
+                <td>Chamber admin</td>
+                <td>Approve members, run events, communicate via WhatsApp, review payments, manage cross-chamber permissions.</td>
+                <td>Operational control.</td>
+              </tr>
+              <tr>
+                <td>Platform operator</td>
+                <td>Provision chambers, support integrations, manage platform-level settings and future expansion controls.</td>
+                <td>Scale and support.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="actors" data-section-title="Actors, user types, and permissions"></div>
+        </div>
+      </section>
+
+      <section id="modules" class="panel section">
+        <div class="section-head">
+          <h2>Modules and phased rollout</h2>
+          <span class="status-tag status-open">Phase-based</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Phase</th>
+                <th>Why it exists</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Member database and profiles</td>
+                <td>Stage 1</td>
+                <td>Core directory and identity layer.</td>
+              </tr>
+              <tr>
+                <td>Event management and booking</td>
+                <td>Stage 1</td>
+                <td>Digitizes the most visible chamber workflow.</td>
+              </tr>
+              <tr>
+                <td>WhatsApp automation</td>
+                <td>Stage 1</td>
+                <td>Main communication engine for reminders, updates, and onboarding.</td>
+              </tr>
+              <tr>
+                <td>Corporate reporting</td>
+                <td>Stage 2</td>
+                <td>Supports renewal value and higher-value tiers.</td>
+              </tr>
+              <tr>
+                <td>Advanced analytics and surveys</td>
+                <td>Stage 2</td>
+                <td>Improves retention and product decisions.</td>
+              </tr>
+              <tr>
+                <td>Marketplace and multi-chapter layer</td>
+                <td>Stage 2-3</td>
+                <td>Expansion logic after the base chamber model works.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="modules" data-section-title="Modules and phased rollout"></div>
+        </div>
+      </section>
+
+      <section id="flows" class="panel section">
+        <div class="section-head">
+          <h2>Core flows that should anchor the spec</h2>
+          <span class="status-tag status-review">Behavioral logic</span>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>Private user flow</summary>
+            <p>Discovery -> profile creation -> first content or event action -> WhatsApp link -> repeated engagement -> possible upgrade path.</p>
+          </details>
+          <details open>
+            <summary>Business member flow</summary>
+            <p>Application -> chamber screening -> onboarding meeting -> payment and profile completion -> first relevant introductions and event exposure within 7 days.</p>
+          </details>
+          <details>
+            <summary>Chamber customer flow</summary>
+            <p>Demo -> agreement -> setup and import -> first pilot events -> feedback cycle -> live operating mode.</p>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="flows" data-section-title="Core flows that should anchor the spec"></div>
+        </div>
+      </section>
+
+      <section id="architecture" class="panel section">
+        <div class="section-head">
+          <h2>Recommended architecture, dependencies, and constraints</h2>
+          <span class="status-tag status-risk">Still partly unresolved</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Recommended choice</th>
+                <th>Open dependency</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Frontend</td>
+                <td>React / Next.js</td>
+                <td>Depends on final team preference and delivery model.</td>
+              </tr>
+              <tr>
+                <td>Backend</td>
+                <td>Node.js or Python service layer</td>
+                <td>Needs stack decision before implementation planning.</td>
+              </tr>
+              <tr>
+                <td>Database</td>
+                <td>PostgreSQL</td>
+                <td>No major conflict in source materials.</td>
+              </tr>
+              <tr>
+                <td>Payments</td>
+                <td>Xendit for Indonesia or Stripe for Singapore route</td>
+                <td>Blocked by legal entity decision.</td>
+              </tr>
+              <tr>
+                <td>Search</td>
+                <td>Elasticsearch or Algolia</td>
+                <td>Should be deferred unless search quality is MVP-critical.</td>
+              </tr>
+              <tr>
+                <td>Messaging</td>
+                <td>WhatsApp Business API plus email support</td>
+                <td>Requires business verification and cost control.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="architecture" data-section-title="Recommended architecture, dependencies, and constraints"></div>
+        </div>
+      </section>
+
+      <section id="draft-content" class="panel section">
+        <div class="section-head">
+          <h2>Current chapter draft</h2>
+          <span class="status-tag status-draft">Editable system narrative</span>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>Chapter 1 - Platform thesis and boundaries</summary>
+            <p>
+              Open with the two-layer model and the one-line job of the platform: chamber operating infrastructure plus a growth layer. Immediately define what the product will not attempt to do in Phase 1.
+            </p>
+          </details>
+          <details open>
+            <summary>Chapter 2 - User types, rights, and data domains</summary>
+            <p>
+              Explain each actor and the data they can see, control, or export. This is where chamber data ownership and cross-chamber permission rules need to stay explicit.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 3 - Module roadmap and release gates</summary>
+            <p>
+              Tie Stage 1 modules to the minimum operating system, Stage 2 to retention and intelligence, and Stage 3 to multi-chapter expansion. This is the anti-scope-creep core of the report.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 4 - Core workflows and automation logic</summary>
+            <p>
+              Show how onboarding, event handling, communication, and renewal support work end to end. Keep WhatsApp as a system dependency, not just a feature bullet.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 5 - Technical choices, dependencies, and triggers</summary>
+            <p>
+              End with the stack, legal/entity-linked payment dependency, and the success criteria that would justify moving from MVP to broader expansion.
+            </p>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="draft-content" data-section-title="Current chapter draft"></div>
+        </div>
+      </section>
+
+      <section id="html-structure" class="panel section">
+        <div class="section-head">
+          <h2>HTML structure recommendation</h2>
+          <span class="status-tag status-ok">Ready pattern</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li>Use anchor-linked chapters for actors, modules, flows, and architecture.</li>
+            <li>Keep phase tables and dependencies visible in one scrollable technical page.</li>
+            <li>Attach comments directly to workflows and module tables so future developers can ask scoped questions.</li>
+            <li>Use collapsible sections for lower-priority future modules to keep MVP focus visible.</li>
+          </ul>
+
+          <div class="comment-thread" data-comment-thread data-section-id="html-structure" data-section-title="HTML structure recommendation"></div>
+        </div>
+      </section>
+
+      <section id="interaction-flow" class="panel section">
+        <div class="section-head">
+          <h2>Interaction and comment flow recommendation</h2>
+          <span class="status-tag status-open">Builder review workflow</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Technical reviewers comment directly on actor, module, or architecture sections instead of keeping feedback in separate documents.</li>
+            <li>Scope disputes are logged in the module roadmap section so phase discipline is visible.</li>
+            <li>Dependency questions should be tagged as <em>question</em> or <em>concern</em> and resolved before implementation starts.</li>
+          </ol>
+
+          <div class="comment-thread" data-comment-thread data-section-id="interaction-flow" data-section-title="Interaction and comment flow recommendation"></div>
+        </div>
+      </section>
+
+      <section id="open-questions" class="panel section">
+        <div class="section-head">
+          <h2>Open questions</h2>
+          <span class="status-tag status-risk">Still open</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Which backend path is preferred in practice: Node.js or Python?</td>
+                <td>This affects team composition, delivery speed, and integration planning.</td>
+              </tr>
+              <tr>
+                <td>How much of search, analytics, and AI moderation belongs in MVP versus Stage 2?</td>
+                <td>This is a direct scope and cost decision.</td>
+              </tr>
+              <tr>
+                <td>Which payment entity path is real: Indonesia/Xendit or Singapore/Stripe?</td>
+                <td>It changes payment architecture and legal setup.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="open-questions" data-section-title="Open questions"></div>
+        </div>
+      </section>
+
+      <section id="change-log" class="panel section">
+        <div class="section-head">
+          <h2>Change log</h2>
+          <span class="status-tag status-draft">Static editorial log</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li><strong>Draft v0.1:</strong> Created system shell with actors, modules, flows, and architecture sections.</li>
+            <li><strong>Draft v0.2:</strong> Added report-ready chapter map and explicit review workflow.</li>
+            <li><strong>Draft v0.3:</strong> Added open technical questions and phase-discipline language.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanChamp Partnership Alignment Report</title>
+  <link rel="stylesheet" href="assets/review.css">
+</head>
+<body data-report-id="partnership-alignment" data-report-title="Partnership / Investor / Founder Alignment Report">
+  <header class="topbar">
+    <div>
+      <h1>Partnership / Investor / Founder Alignment</h1>
+      <div class="small muted">Discussion-grade report for Jacob, possible co-builders, possible investors, and the founder.</div>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-tag status-review">Draft for review</span>
+      <span class="small muted" data-last-updated></span>
+      <button class="btn-secondary" type="button" data-export-notes>Export notes</button>
+      <label class="btn-secondary" for="import-notes">Import notes</label>
+      <input id="import-notes" data-import-notes type="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-body">
+          <h2>Report bundle</h2>
+          <nav class="report-links">
+            <a href="index.html">Overview</a>
+            <a href="evidence-register.html">Evidence register</a>
+            <a class="active" href="partnership-alignment.html">Partnership alignment</a>
+            <a href="board-evaluation.html">Board evaluation</a>
+            <a href="system-specification.html">System specification</a>
+            <a href="business-model-financials.html">Business model and financials</a>
+          </nav>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-body">
+          <h3>Page navigation</h3>
+          <nav class="toc">
+            <a href="#summary">Executive summary</a>
+            <a href="#current-reality">Current reality</a>
+            <a href="#decision-support">Decision support</a>
+            <a href="#structure-map">Current structure</a>
+            <a href="#draft-content">Current chapter draft</a>
+            <a href="#html-structure">HTML structure</a>
+            <a href="#interaction-flow">Interaction flow</a>
+            <a href="#open-questions">Open questions</a>
+            <a href="#change-log">Change log</a>
+            <a href="#review-log">Review log</a>
+          </nav>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <section class="panel hero">
+        <span class="eyebrow">Purpose: alignment before commitment</span>
+        <h2>Explain the opportunity honestly, then show what partnership would actually need to solve.</h2>
+        <p>
+          This report does not sell certainty. It helps Jacob and any future co-builder or investor understand the real state of preparation, the missing pieces, the partnership logic, and the downside if structure is weak.
+        </p>
+        <div class="chip-row">
+          <div class="metric">
+            <span class="metric-label">Primary audience</span>
+            <span class="metric-value">Jacob, founder, possible co-investor</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Key decision</span>
+            <span class="metric-value">Proceed to structured validation and term definition?</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Core tone</span>
+            <span class="metric-value">Credible, mature, conditional</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="panel section">
+        <div class="section-head">
+          <h2>Executive summary</h2>
+          <span class="status-tag status-open">Decision support</span>
+        </div>
+        <div class="section-body">
+          <div class="meta-grid">
+            <div class="callout">
+              <h3>Objective</h3>
+              <p>Clarify whether a partnership around DanChamp is worth pursuing, under what structure, and with which staged commitments.</p>
+            </div>
+            <div class="callout">
+              <h3>Intended audience</h3>
+              <p>Jacob, a possible co-builder or investor, and the founder as internal decision-maker.</p>
+            </div>
+            <div class="callout">
+              <h3>Core message</h3>
+              <p>The concept is unusually well prepared for its stage, but it is still pre-validation, pre-code, and structurally unresolved.</p>
+            </div>
+            <div class="callout">
+              <h3>Risks / concerns</h3>
+              <p>Governance, ownership, entity choice, revenue-sharing, and whether network contribution and build contribution are being valued coherently.</p>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>Why it matters</th>
+                <th>What it must avoid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Why this exists</td>
+                <td>Frames the conversation as strategic review, not pressure selling.</td>
+                <td>Overstate any existing commitment.</td>
+              </tr>
+              <tr>
+                <td>Current reality</td>
+                <td>Shows what is built, what is documented, and what is still open.</td>
+                <td>Confuse preparation with traction.</td>
+              </tr>
+              <tr>
+                <td>Partnership logic</td>
+                <td>Explains why this likely needs more than a founder-only structure.</td>
+                <td>Assume Jacob or Lars is already committed.</td>
+              </tr>
+              <tr>
+                <td>Decision path</td>
+                <td>Keeps the next step concrete and low-risk.</td>
+                <td>Jump straight to final ownership conclusions.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="summary" data-section-title="Executive summary"></div>
+        </div>
+      </section>
+
+      <section id="current-reality" class="panel section">
+        <div class="section-head">
+          <h2>Current reality to present explicitly</h2>
+          <span class="status-tag status-risk">Must stay honest</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Fact</th>
+                <th>Implication</th>
+                <th>How to phrase it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>No code has been written yet, intentionally.</td>
+                <td>This avoids premature build waste, but there is no product proof yet.</td>
+                <td>"The project is prepared, not yet built."</td>
+              </tr>
+              <tr>
+                <td>Documentation, UX thinking, and architecture are unusually advanced for the stage.</td>
+                <td>Shows seriousness and preparation discipline.</td>
+                <td>"The groundwork is stronger than the typical concept-stage startup."</td>
+              </tr>
+              <tr>
+                <td>Legal, ownership, and revenue-share decisions are unresolved.</td>
+                <td>These are deal-critical, not cleanup items.</td>
+                <td>"The strategic logic may be attractive, but the operating structure is not settled."</td>
+              </tr>
+              <tr>
+                <td>DanCham board interest is promising but not binding.</td>
+                <td>Helpful signal, not proof of rollout.</td>
+                <td>"There is interest, but no institutional commitment should be implied."</td>
+              </tr>
+              <tr>
+                <td>The source pack contains both a DanCham pilot case and a broader Nordic regional investment thesis.</td>
+                <td>These are related, but they are not the same decision.</td>
+                <td>"The immediate partnership question is whether to de-risk the first step, not whether the full regional thesis is already investable on final terms."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <details open>
+            <summary>Founder preface recommendation</summary>
+            <p>
+              Use the Jacob origin story as a short human opening, but keep it disciplined. It should establish why the founder cared enough to go deeper, not turn into a personal memoir. The useful arc is: initial distance from the chamber, gradual exposure to its latent value, then discovery that the current model leaves too much value locked inside manual operations.
+            </p>
+          </details>
+          <details>
+            <summary>Assumptions to keep visible</summary>
+            <ul>
+              <li>Partnership capital structure is still a proposal.</li>
+              <li>Network leverage from Jacob is meaningful, but needs a clear operating role definition.</li>
+              <li>The broader platform upside is real only if Phase 0 and Phase 1 validate the core chamber use case.</li>
+            </ul>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="current-reality" data-section-title="Current reality to present explicitly"></div>
+        </div>
+      </section>
+
+      <section id="decision-support" class="panel section">
+        <div class="section-head">
+          <h2>Key decision supported by this report</h2>
+          <span class="status-tag status-review">Structured choices</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>What it means</th>
+                <th>Why someone would choose it</th>
+                <th>Main concern</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Proceed to Phase 0 together</td>
+                <td>Support validation and term definition without locking full build commitments.</td>
+                <td>Lowest-risk path to clarity.</td>
+                <td>Still requires disciplined ownership of output and decisions.</td>
+              </tr>
+              <tr>
+                <td>Support conceptually, defer capital</td>
+                <td>Stay close to the process but postpone hard commitments.</td>
+                <td>Useful when interest is high but structure is not ready.</td>
+                <td>Can create drift if no decision timeline exists.</td>
+              </tr>
+              <tr>
+                <td>Pause until stronger evidence exists</td>
+                <td>Decline or delay involvement until validation proves demand.</td>
+                <td>Rational if unresolved structure outweighs upside.</td>
+                <td>May slow momentum and reduce founder leverage.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="decision-support" data-section-title="Key decision supported by this report"></div>
+        </div>
+      </section>
+
+      <section id="structure-map" class="panel section">
+        <div class="section-head">
+          <h2>Current report structure</h2>
+          <span class="status-tag status-ok">Report architecture</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Chapter</th>
+                <th>Job</th>
+                <th>Non-negotiable rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Why we are here</td>
+                <td>Set the origin and tension without romanticizing the founder story.</td>
+                <td>Use Jacob as the practical starting point, not as a myth-building device.</td>
+              </tr>
+              <tr>
+                <td>What exists today</td>
+                <td>Show preparation, not false traction.</td>
+                <td>Separate design/documentation readiness from real product proof.</td>
+              </tr>
+              <tr>
+                <td>Why partnership may matter</td>
+                <td>Explain why capital, network, and execution all matter.</td>
+                <td>Do not imply that one contribution category cancels the need for governance clarity.</td>
+              </tr>
+              <tr>
+                <td>Role and contribution map</td>
+                <td>Make proposed roles legible before discussing percentages.</td>
+                <td>Keep all roles provisional unless confirmed.</td>
+              </tr>
+              <tr>
+                <td>Decision path</td>
+                <td>Show the low-risk first step, then the later gates.</td>
+                <td>Do not collapse Phase 0 and a full regional investment case into one ask.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="structure-map" data-section-title="Current report structure"></div>
+        </div>
+      </section>
+
+      <section id="draft-content" class="panel section">
+        <div class="section-head">
+          <h2>Current chapter draft</h2>
+          <span class="status-tag status-draft">Editable narrative</span>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>Chapter 1 - Why this conversation exists now</summary>
+            <p>
+              Open with the problem: chamber value is real, but growth, onboarding, engagement, and proof of member value are still constrained by manual operating models. DanChamp is a serious attempt to turn that structural weakness into a platform opportunity.
+            </p>
+          </details>
+          <details open>
+            <summary>Chapter 2 - Current state, honestly stated</summary>
+            <p>
+              Show what exists today: concept, architecture, documentation, UX preparation, market work, and stakeholder interest. Show what does not exist: code, institutional approval, partner agreement, legal structure, and product traction.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 3 - Why partnership may be needed</summary>
+            <p>
+              Explain that this is not simply a software build problem. It is a trust, access, governance, and operating model problem. Capital alone is not enough; distribution and credibility matter. But network contribution should not be treated as a substitute for governance clarity.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 4 - Role logic and staged commitment</summary>
+            <p>
+              Separate proposed roles: founder as build and operating lead, Jacob as strategic network opener, future co-investor as capital and strategic perspective, later team roles as execution support. Keep all of this explicitly conditional until agreed.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 5 - Upside, downside, and uncertainty</summary>
+            <p>
+              Upside: defendable chamber operating infrastructure with expansion potential. Downside: complex governance, slow adoption, and a model that can look attractive on paper before it proves real-world pull. This chapter should invite disagreement, not hide it.
+            </p>
+          </details>
+          <details>
+            <summary>Chapter 6 - Separate the first step from the full platform thesis</summary>
+            <p>
+              Make the distinction explicit: one conversation is about Phase 0 / Phase 1 around DanCham and early partner structure. A different layer is the broader Nordic Community Platform thesis across 46 organizations, larger private-user economics, and possible larger-scale capital framing. If these two asks are merged too early, the report loses credibility.
+            </p>
+          </details>
+
+          <div class="comment-thread" data-comment-thread data-section-id="draft-content" data-section-title="Current chapter draft"></div>
+        </div>
+      </section>
+
+      <section id="html-structure" class="panel section">
+        <div class="section-head">
+          <h2>HTML structure recommendation</h2>
+          <span class="status-tag status-ok">Ready pattern</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li>Sticky sidebar with chapter links and quick link back to the evidence register.</li>
+            <li>Executive summary at top with audience, decision ask, and red-flag items.</li>
+            <li>Expandable sections for role logic, scenario logic, and unresolved ownership terms.</li>
+            <li>Per-section note threads plus a report-wide review log for negotiation comments.</li>
+            <li>Static change log at the bottom so edits between versions are visible without duplicating files.</li>
+          </ul>
+
+          <div class="comment-thread" data-comment-thread data-section-id="html-structure" data-section-title="HTML structure recommendation"></div>
+        </div>
+      </section>
+
+      <section id="interaction-flow" class="panel section">
+        <div class="section-head">
+          <h2>Interaction and comment flow recommendation</h2>
+          <span class="status-tag status-open">Collaborative review</span>
+        </div>
+        <div class="section-body">
+          <ol>
+            <li>Reviewer opens the report and uses the sidebar to jump to role logic, economics, or open decisions.</li>
+            <li>Reviewer leaves section-level notes under the exact area they challenge.</li>
+            <li>Named notes appear both in the section thread and in the report-level review log.</li>
+            <li>When a point is settled, the reviewer can log a new note with status set to resolved so the review trail stays visible.</li>
+          </ol>
+
+          <div class="comment-thread" data-comment-thread data-section-id="interaction-flow" data-section-title="Interaction and comment flow recommendation"></div>
+        </div>
+      </section>
+
+      <section id="open-questions" class="panel section">
+        <div class="section-head">
+          <h2>Open questions to answer before treating this as negotiation-ready</h2>
+          <span class="status-tag status-risk">Still open</span>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>What exactly is Jacob being asked to commit in Phase 0 versus later phases?</td>
+                <td>Prevents ambiguity between relationship support, capital, and governance rights.</td>
+              </tr>
+              <tr>
+                <td>Is the near-term ask an MVP / pilot partnership, or an investor-grade regional platform commitment?</td>
+                <td>This determines whether the economics should stay in the IDR 120-200M pilot range or move into the much larger regional investment case.</td>
+              </tr>
+              <tr>
+                <td>Is Lars actually in scope as a possible participant, or only as a future possibility?</td>
+                <td>Affects how broadly the report should frame the opportunity.</td>
+              </tr>
+              <tr>
+                <td>Which ownership principles are non-negotiable for the founder?</td>
+                <td>These should shape structure before discussions drift into percentages.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="comment-thread" data-comment-thread data-section-id="open-questions" data-section-title="Open questions to answer before treating this as negotiation-ready"></div>
+        </div>
+      </section>
+
+      <section id="change-log" class="panel section">
+        <div class="section-head">
+          <h2>Change log</h2>
+          <span class="status-tag status-draft">Static editorial log</span>
+        </div>
+        <div class="section-body">
+          <ul>
+            <li><strong>Draft v0.1:</strong> Built interactive shell, section notes, and review log.</li>
+            <li><strong>Draft v0.2:</strong> Separated DanCham pilot framing from the larger Nordic regional platform thesis.</li>
+            <li><strong>Draft v0.3:</strong> Added role-map and negotiation-readiness questions.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="review-log" class="panel section">
+        <div class="section-head">
+          <h2>Review log</h2>
+          <span class="status-tag status-draft">Live from local notes</span>
+        </div>
+        <div class="section-body">
+          <div data-review-log></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/review.js"></script>
+</body>
+</html>
