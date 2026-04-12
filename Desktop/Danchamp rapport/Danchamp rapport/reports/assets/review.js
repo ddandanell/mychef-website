@@ -2,7 +2,6 @@
   const STORAGE_KEY = "danchamp-review-data-v1";
   const reportId = document.body.dataset.reportId || "default-report";
   const reportTitle = document.body.dataset.reportTitle || document.title;
-  let pendingLoadWarning = null;
 
   function emptyStore() {
     return {
@@ -97,9 +96,11 @@
       }
       return normalizeStore(JSON.parse(raw));
     } catch (error) {
-      pendingLoadWarning =
-        "Saved review notes could not be read. The local note store was reset in memory. Import a backup JSON if you need to recover them.";
-      return emptyStore();
+      showMessage(
+        "Saved review notes could not be read. No new notes were saved. Import a backup JSON if you need to recover them.",
+        "error"
+      );
+      return null;
     }
   }
 
@@ -191,6 +192,15 @@
     }
 
     const store = loadStore();
+    if (!store) {
+      target.innerHTML = "";
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent =
+        "Review log unavailable until the local note store is readable again.";
+      target.appendChild(empty);
+      return;
+    }
     const report = ensureReport(store);
     const entries = Object.entries(report.sections)
       .flatMap(([sectionId, comments]) =>
@@ -245,6 +255,7 @@
 
   function initThreads() {
     const threads = document.querySelectorAll("[data-comment-thread]");
+    const initialStore = loadStore() || emptyStore();
     threads.forEach((thread) => {
       const sectionId = thread.dataset.sectionId;
       const sectionTitle = thread.dataset.sectionTitle || sectionId;
@@ -276,6 +287,9 @@
         event.preventDefault();
         const data = new FormData(form);
         const store = loadStore();
+        if (!store) {
+          return;
+        }
         const comments = getSectionComments(store, sectionId);
         comments.push({
           name: String(data.get("name")).trim(),
@@ -296,13 +310,15 @@
       });
 
       thread.append(title, helper, list, form);
-      const store = loadStore();
-      renderCommentList(list, getSectionComments(store, sectionId));
+      renderCommentList(list, getSectionComments(initialStore, sectionId));
     });
   }
 
   function exportNotes() {
     const store = loadStore();
+    if (!store) {
+      return;
+    }
     const blob = new Blob([JSON.stringify(store, null, 2)], {
       type: "application/json"
     });
@@ -376,7 +392,7 @@
         if (!Object.keys(incoming.reports).length) {
           throw new Error("No report data found.");
         }
-        const current = loadStore();
+        const current = loadStore() || emptyStore();
         const merged = mergeStores(current, incoming);
         if (!saveStore(merged)) {
           return;
@@ -389,6 +405,9 @@
           "error"
         );
       }
+    };
+    reader.onerror = function () {
+      showMessage("Could not read the selected file.", "error");
     };
     reader.readAsText(file);
   }
@@ -412,15 +431,10 @@
     }
 
     if (updated) {
-      const store = loadStore();
+      const store = loadStore() || emptyStore();
       updated.textContent = store.updatedAt
         ? "Notes updated: " + formatDate(store.updatedAt)
         : "Notes updated: no local notes yet";
-    }
-
-    if (pendingLoadWarning) {
-      showMessage(pendingLoadWarning, "error");
-      pendingLoadWarning = null;
     }
   }
 
