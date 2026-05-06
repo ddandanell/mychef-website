@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import {
   Sparkles,
   Clock,
@@ -15,6 +16,7 @@ import {
   MapPin,
   Home,
   HelpCircle,
+  ArrowRight,
 } from 'lucide-react'
 import { SectionEyebrow } from '@/components/website/SectionEyebrow'
 import { GoldDivider } from '@/components/website/GoldDivider'
@@ -22,7 +24,7 @@ import { FAQItem } from '@/components/website/FAQItem'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/fade-in'
 
 export const metadata: Metadata = {
-  title: 'The Experience · Aegean Riviera by myCHEF',
+  title: 'The Experience \u00b7 Aegean Riviera by myCHEF',
   description:
     'What to expect from a private Mediterranean fine dining evening in your Bali villa. Arrival, courses, visible craft, and complete service.',
 }
@@ -124,41 +126,102 @@ export default function ExperiencePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-4 py-10 pt-32 text-center md:px-8 md:py-16">
-        <div className="mx-auto max-w-6xl">
+      <section className="grain relative min-h-[100dvh] overflow-hidden bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]">
+        <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-4 pb-20 pt-32 md:pb-28 md:pt-40">
           <FadeIn>
-            <div className="mb-4 flex items-center justify-center gap-2">
-              <Sparkles className="h-3 w-3 text-[#C9A96E]" />
+            <div className="mb-6 inline-flex items-center gap-2">
+              <Sparkles className="h-3.5 w-3.5 text-[#C9A96E]" strokeWidth={1} />
               <SectionEyebrow text="The Experience" />
             </div>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <h1 className="font-display text-[3rem] font-light leading-tight text-[#F5F5F0]">
-              What to Expect
+
+          <FadeIn delay={0.1} blur>
+            <h1 className="font-display text-[3.5rem] font-light leading-[1.05] text-[#F5F5F0] md:text-[5rem] lg:text-[6rem]">
+              What to
+              <br />
+              <span className="italic text-[#C9A96E]">Expect</span>
             </h1>
           </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <p className="mt-6 max-w-sm font-body text-sm leading-relaxed text-[#888880] md:max-w-md md:text-base">
+              A complete evening from arrival to digestivo. Handmade pasta, fire-grilled fish,
+              and visible craft — all in your villa.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.3}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/book"
+                className="group inline-flex items-center gap-3 bg-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-all duration-500 hover:bg-[#d4b882] active:scale-[0.98]"
+              >
+                Book Your Evening
+                <span className="flex h-6 w-6 items-center justify-center bg-[#080808]/10 transition-transform duration-500 group-hover:translate-x-0.5">
+                  <ArrowRight className="h-3 w-3" strokeWidth={2} />
+                </span>
+              </Link>
+              <Link
+                href="/menus"
+                className="group inline-flex items-center gap-3 border border-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
+              >
+                View Menus
+                <span className="flex h-6 w-6 items-center justify-center border border-[#C9A96E]/30 transition-all duration-500 group-hover:border-[#080808]/20">
+                  <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover:translate-x-0.5" strokeWidth={2} />
+                </span>
+              </Link>
+            </div>
+          </FadeIn>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 right-4 flex flex-col items-center gap-2 md:bottom-12 md:right-8">
+            <div className="h-8 w-px animate-scroll-pulse bg-[#C9A96E]" />
+            <span className="font-body text-[0.55rem] uppercase tracking-[0.2em] text-[#888880]">
+              Scroll
+            </span>
+          </div>
         </div>
       </section>
 
       {/* Evening Sequence */}
-      <section className="px-4 py-10 md:px-8 md:py-16">
+      <section className="px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <SectionEyebrow text="The Evening Sequence" className="mb-4" />
           </FadeIn>
+          <FadeIn delay={0.1} blur>
+            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
+              Six movements
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
+              The evening unfolds like a story — each course a chapter, each technique a detail
+              you witness in real time.
+            </p>
+          </FadeIn>
 
-          <StaggerContainer className="mt-8 space-y-6" stagger={0.08}>
+          <StaggerContainer className="mt-12 grid gap-px md:mt-16 md:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
             {eveningSequence.map((item) => (
-              <StaggerItem key={item.num} className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#2a2a2a]">
-                  <span className="font-display text-sm text-[#C9A96E]">{item.num}</span>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <item.Icon className="h-4 w-4 text-[#C9A96E]" />
-                    <p className="font-body text-sm font-medium text-[#F5F5F0]">{item.title}</p>
+              <StaggerItem key={item.num}>
+                <div className="group border border-[#2a2a2a]/50 bg-[#111111]/50 p-5 transition-colors duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111] md:p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#2a2a2a]">
+                      <span className="font-display text-sm text-[#C9A96E]">{item.num}</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <item.Icon
+                          className="h-4 w-4 text-[#C9A96E] transition-transform duration-500 group-hover:scale-110"
+                          strokeWidth={1}
+                        />
+                        <p className="font-body text-sm font-medium text-[#F5F5F0]">{item.title}</p>
+                      </div>
+                      <p className="mt-1 font-body text-xs leading-relaxed text-[#888880]">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-1 font-body text-xs leading-relaxed text-[#888880]">{item.desc}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -167,35 +230,36 @@ export default function ExperiencePage() {
       </section>
 
       {/* Visible Craft */}
-      <section className="bg-[#111111] px-4 py-10 md:px-8 md:py-16">
+      <section className="border-y border-[#2a2a2a]/30 bg-[#111111]/30 px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <SectionEyebrow text="Visible Craft" className="mb-4" />
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 className="font-display text-[2.4rem] font-light leading-tight text-[#F5F5F0]">
+          <FadeIn delay={0.1} blur>
+            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
               What you will see
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880]">
+            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
               We do not hide in the kitchen. The counter is the stage. You will watch dough transform,
               flames adjust, and sauce reduce — all in real time.
             </p>
           </FadeIn>
 
-          <StaggerContainer className="mt-8 space-y-4" stagger={0.06}>
+          <StaggerContainer className="mt-12 grid gap-px md:mt-16 md:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {visibleCraft.map((item, i) => (
-              <StaggerItem key={i} className="flex items-start gap-3">
-                <div className="mt-1 flex h-2 w-2 shrink-0 items-center justify-center">
-                  <span className="block h-1.5 w-1.5 bg-[#C9A96E]" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <item.Icon className="h-3.5 w-3.5 text-[#C9A96E]" />
+              <StaggerItem key={i}>
+                <div className="group border border-[#2a2a2a]/50 bg-[#111111]/50 p-5 transition-colors duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111] md:p-6">
+                  <div className="flex items-center gap-3">
+                    <span className="block h-1.5 w-1.5 shrink-0 bg-[#C9A96E]" />
+                    <item.Icon
+                      className="h-4 w-4 text-[#C9A96E] transition-transform duration-500 group-hover:scale-110"
+                      strokeWidth={1}
+                    />
                     <p className="font-body text-sm text-[#F5F5F0]">{item.text}</p>
                   </div>
-                  <p className="mt-0.5 font-body text-xs italic text-[#888880]">{item.sub}</p>
+                  <p className="mt-2 pl-5 font-body text-xs italic text-[#888880]">{item.sub}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -204,38 +268,40 @@ export default function ExperiencePage() {
       </section>
 
       {/* Location */}
-      <section className="px-4 py-10 md:px-8 md:py-16">
+      <section className="px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <SectionEyebrow text="Where We Serve" className="mb-4" />
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 className="font-display text-[2.4rem] font-light leading-tight text-[#F5F5F0]">
+          <FadeIn delay={0.1} blur>
+            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
               Bali&apos;s finest villa locations
             </h2>
           </FadeIn>
-
           <FadeIn delay={0.2}>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {areas.map((area) => (
-                <span
-                  key={area}
-                  className="flex items-center gap-1.5 border border-[#2a2a2a] px-3 py-1.5 font-body text-xs text-[#888880]"
-                >
-                  <MapPin className="h-3 w-3 text-[#C9A96E]" />
-                  {area}
-                </span>
-              ))}
-            </div>
+            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
+              We travel across the island to bring the Aegean to your door.
+            </p>
           </FadeIn>
 
+          <StaggerContainer className="mt-10 flex flex-wrap gap-2 md:mt-14" stagger={0.05}>
+            {areas.map((area) => (
+              <StaggerItem key={area}>
+                <span className="inline-flex items-center gap-1.5 border border-[#2a2a2a]/50 bg-[#111111]/50 px-3 py-1.5 font-body text-xs text-[#888880] transition-colors duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111]">
+                  <MapPin className="h-3 w-3 text-[#C9A96E]" strokeWidth={1} />
+                  {area}
+                </span>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
           <FadeIn delay={0.3}>
-            <div className="mt-6 border border-[#2a2a2a] bg-[#111111] p-5">
+            <div className="mt-10 border border-[#2a2a2a]/50 bg-[#111111]/50 p-6 transition-colors duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111] md:p-8">
               <div className="flex items-center gap-2">
-                <Home className="h-4 w-4 text-[#C9A96E]" />
+                <Home className="h-4 w-4 text-[#C9A96E]" strokeWidth={1} />
                 <p className="font-body text-sm font-medium text-[#F5F5F0]">Villa Requirements</p>
               </div>
-              <p className="mt-2 font-body text-xs leading-relaxed text-[#888880]">
+              <p className="mt-3 font-body text-sm leading-relaxed text-[#888880]">
                 We need a functional kitchen with at least 4 burners and oven access, plus a dining table
                 that seats your party. Outdoor kitchens and poolside tables are welcome. We bring all
                 cooking equipment, serving ware, and linens.
@@ -246,22 +312,22 @@ export default function ExperiencePage() {
       </section>
 
       {/* FAQ */}
-      <section className="px-4 py-10 md:px-8 md:py-16">
+      <section className="border-y border-[#2a2a2a]/30 bg-[#111111]/30 px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <div className="mb-4 flex items-center gap-2">
-              <HelpCircle className="h-3.5 w-3.5 text-[#C9A96E]" />
+            <div className="mb-4 inline-flex items-center gap-2">
+              <HelpCircle className="h-3.5 w-3.5 text-[#C9A96E]" strokeWidth={1} />
               <SectionEyebrow text="Questions" />
             </div>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 className="font-display text-[2.4rem] font-light leading-tight text-[#F5F5F0]">
+          <FadeIn delay={0.1} blur>
+            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
               Before you book
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="mt-8">
+            <div className="mt-10 md:mt-14">
               <FAQItem
                 question="What is the minimum number of guests?"
                 answer="Minimum 4 guests per booking. Maximum 20. Larger groups by request."
@@ -290,7 +356,7 @@ export default function ExperiencePage() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <GoldDivider className="mt-12" />
+            <GoldDivider className="mt-12 md:mt-16" />
           </FadeIn>
         </div>
       </section>

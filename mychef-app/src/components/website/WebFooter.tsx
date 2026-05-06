@@ -1,31 +1,55 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, Instagram, MapPin, ArrowUp } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Phone, Instagram, MapPin, ArrowUp, Mail } from 'lucide-react'
 
 const footerLinks = [
   { href: '/', label: 'Home' },
-  { href: '/experience', label: 'The Experience' },
-  { href: '/menus', label: 'The Menus' },
-  { href: '/story', label: 'Our Story' },
-  { href: '/events', label: 'Private Events' },
-  { href: '/book', label: 'Book Your Evening' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/menus', label: 'Menus' },
+  { href: '/story', label: 'Story' },
+  { href: '/events', label: 'Events' },
+  { href: '/book', label: 'Book' },
 ]
+
+const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export function WebFooter() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
-    <footer className="border-t border-[#2a2a2a] bg-[#111111]">
-      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-16">
-        <div className="mb-8">
-          <h2 className="font-display text-3xl font-light text-[#F5F5F0]">myCHEF</h2>
-          <p className="mt-2 font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
-            Aegean Riviera · Mediterranean Fine Dining · Bali
-          </p>
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: easeOutExpo }}
+      className="border-t border-[#2a2a2a]/50"
+    >
+      <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        {/* Top */}
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
+              myCHEF
+            </h2>
+            <p className="mt-2 font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
+              Aegean Riviera · Mediterranean Fine Dining · Bali
+            </p>
+          </div>
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 font-body text-xs font-medium uppercase tracking-[0.1em] text-[#888880] transition-colors hover:text-[#C9A96E]"
+          >
+            Back to top
+            <span className="flex h-8 w-8 items-center justify-center border border-[#2a2a2a] transition-all duration-500 group-hover:border-[#C9A96E] group-hover:bg-[#C9A96E]/10">
+              <ArrowUp className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+            </span>
+          </button>
         </div>
 
-        <nav className="mb-8 flex flex-wrap gap-x-6 gap-y-3">
+        {/* Nav */}
+        <nav className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-[#2a2a2a]/50 pt-8">
           {footerLinks.map((link) => (
             <Link
               key={link.href}
@@ -37,68 +61,42 @@ export function WebFooter() {
           ))}
         </nav>
 
-        <div className="mb-8 space-y-2 font-body text-xs text-[#888880]">
-          <p className="inline-flex items-center gap-2">
-            <Phone className="h-3.5 w-3.5 text-[#C9A96E]" />
-            <a
-              href="https://wa.me/6281234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#C9A96E] hover:underline"
-            >
-              +62 812 3456 7890
-            </a>
-          </p>
-          <p className="inline-flex items-center gap-2">
-            <Instagram className="h-3.5 w-3.5 text-[#C9A96E]" />
-            <a
-              href="https://instagram.com/mychef.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#C9A96E] hover:underline"
-            >
-              @mychef.id
-            </a>
-          </p>
-          <p className="inline-flex items-center gap-2">
-            <MapPin className="h-3.5 w-3.5 text-[#C9A96E]" />
-            <span>Bali, Indonesia</span>
-          </p>
+        {/* Contact */}
+        <div className="mt-8 flex flex-wrap gap-6">
+          <a
+            href="https://wa.me/6281234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 font-body text-xs text-[#888880] transition-colors hover:text-[#C9A96E]"
+          >
+            <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
+            WhatsApp
+          </a>
+          <a
+            href="https://instagram.com/mychef.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 font-body text-xs text-[#888880] transition-colors hover:text-[#C9A96E]"
+          >
+            <Instagram className="h-3.5 w-3.5" strokeWidth={1.5} />
+            Instagram
+          </a>
+          <span className="flex items-center gap-2 font-body text-xs text-[#888880]">
+            <MapPin className="h-3.5 w-3.5" strokeWidth={1.5} />
+            Bali, Indonesia
+          </span>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-[#2a2a2a] pt-6 md:flex-row md:items-center md:justify-between">
+        {/* Bottom */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-[#2a2a2a]/50 pt-6 md:flex-row md:items-center">
           <p className="font-body text-[0.65rem] text-[#888880]">
             © 2026 myCHEF · Aegean Riviera · All rights reserved
           </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://wa.me/6281234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888880] transition-colors hover:text-[#C9A96E]"
-              aria-label="WhatsApp"
-            >
-              <Phone className="h-4 w-4" />
-            </a>
-            <a
-              href="https://instagram.com/mychef.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888880] transition-colors hover:text-[#C9A96E]"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
-            <button
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-[#888880] transition-colors hover:text-[#C9A96E]"
-            >
-              <ArrowUp className="h-3.5 w-3.5" />
-              Back to top
-            </button>
-          </div>
+          <p className="font-body text-[0.65rem] text-[#888880]">
+            Private Mediterranean Fine Dining
+          </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
