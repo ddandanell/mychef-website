@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Menu, X, Calendar } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -63,8 +64,9 @@ export function WebNav() {
             ))}
             <Link
               href="/book"
-              className="border border-[#C9A96E] px-4 py-2 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
+              className="inline-flex items-center gap-2 border border-[#C9A96E] px-4 py-2 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
             >
+              <Calendar className="h-3 w-3" />
               Book Your Evening
             </Link>
           </nav>
@@ -72,12 +74,10 @@ export function WebNav() {
           {/* Hamburger */}
           <button
             onClick={() => setDrawerOpen(true)}
-            className="flex flex-col gap-[5px] md:hidden"
+            className="flex items-center justify-center md:hidden"
             aria-label="Open menu"
           >
-            <span className={`h-px w-6 transition-all ${drawerOpen ? 'bg-[#C9A96E]' : 'bg-[#F5F5F0]'}`} />
-            <span className={`h-px w-6 transition-all ${drawerOpen ? 'bg-[#C9A96E]' : 'bg-[#F5F5F0]'}`} />
-            <span className={`h-px w-6 transition-all ${drawerOpen ? 'bg-[#C9A96E]' : 'bg-[#F5F5F0]'}`} />
+            <Menu className="h-5 w-5 text-[#F5F5F0]" />
           </button>
         </div>
       </header>
@@ -97,10 +97,10 @@ export function WebNav() {
         >
           <button
             onClick={() => setDrawerOpen(false)}
-            className="absolute right-4 top-4 font-body text-2xl text-[#888880] hover:text-[#F5F5F0]"
+            className="absolute right-4 top-4 text-[#888880] transition-colors hover:text-[#F5F5F0]"
             aria-label="Close menu"
           >
-            &times;
+            <X className="h-6 w-6" />
           </button>
           <nav className="flex flex-col gap-6">
             {navLinks.map((link) => (

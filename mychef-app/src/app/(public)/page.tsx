@@ -1,7 +1,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import {
+  Flame,
+  Users,
+  Globe,
+  Eye,
+  UtensilsCrossed,
+  Star,
+  BookOpen,
+  Wine,
+  ArrowRight,
+} from 'lucide-react'
 import { SectionEyebrow } from '@/components/website/SectionEyebrow'
-import { GoldDivider } from '@/components/website/GoldDivider'
 import { IngredientMarquee } from '@/components/website/IngredientMarquee'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/fade-in'
 
@@ -11,23 +21,64 @@ export const metadata: Metadata = {
     'From Sicily to the Aegean — a complete Mediterranean journey. Handmade pasta, fresh seafood, and fire. Served privately in your Bali villa.',
 }
 
+const conceptItems = [
+  {
+    icon: Users,
+    title: 'Private Setting',
+    desc: 'Your villa becomes the venue. No shared dining room. No strangers. Just your guests and the kitchen.',
+  },
+  {
+    icon: Globe,
+    title: 'Mediterranean Focus',
+    desc: 'Sicilian and Aegean traditions interpreted through fresh Indonesian produce and imported specialties.',
+  },
+  {
+    icon: Eye,
+    title: 'Visible Craft',
+    desc: 'Pasta rolled by hand. Fish filleted at the counter. Fire managed in real time. You see it all.',
+  },
+  {
+    icon: UtensilsCrossed,
+    title: 'Complete Service',
+    desc: 'Tableware, linens, glassware, and service included. We leave the kitchen cleaner than we found it.',
+  },
+]
+
+const menuCards = [
+  {
+    icon: BookOpen,
+    name: 'The Riviera Menu',
+    courses: '7 courses',
+    price: 'IDR 2.200.000',
+  },
+  {
+    icon: Wine,
+    name: 'The Odyssey Menu',
+    courses: '11 courses + wine pairing',
+    price: 'IDR 3.000.000',
+  },
+]
+
 export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
       <section className="grain relative min-h-[calc(100vh-4rem)] overflow-hidden bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]">
-        <div className="relative z-10 flex min-h-[calc(100vh-4rem)] flex-col justify-end px-4 pb-24 pt-32">
+        <div className="relative z-10 flex min-h-[calc(100vh-4rem)] flex-col justify-end px-4 pb-24 pt-32 md:px-8">
           <FadeIn>
-            <SectionEyebrow text="Private Mediterranean Fine Dining · Bali" className="mb-4" />
+            <div className="mb-4 inline-flex items-center gap-2">
+              <Flame className="h-3 w-3 text-[#C9A96E]" strokeWidth={2.5} />
+              <SectionEyebrow text="Private Mediterranean Fine Dining · Bali" />
+            </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="font-display text-[3.2rem] font-light leading-[1.05] text-[#F5F5F0]">
+            <h1 className="font-display text-[3.2rem] font-light leading-[1.05] text-[#F5F5F0] md:text-[4.5rem]">
               From Sicily / to the /<br />
               <span className="italic text-[#C9A96E]">Aegean</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="mt-4 max-w-xs font-body text-sm text-[#888880]">
+            <p className="mt-4 max-w-xs font-body text-sm text-[#888880] md:max-w-sm">
               A complete Mediterranean journey. Handmade pasta. Fresh seafood. Fire. Served privately in your villa.
             </p>
           </FadeIn>
@@ -35,13 +86,13 @@ export default function HomePage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center bg-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-colors hover:bg-[#d4b882]"
+                className="inline-flex items-center justify-center gap-2 bg-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-colors hover:bg-[#d4b882]"
               >
                 Book Your Evening
               </Link>
               <Link
                 href="/menus"
-                className="inline-flex items-center justify-center border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
+                className="inline-flex items-center justify-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
               >
                 View Menus
               </Link>
@@ -59,7 +110,7 @@ export default function HomePage() {
       <IngredientMarquee />
 
       {/* Concept Section */}
-      <section className="px-4 py-16">
+      <section className="px-4 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <SectionEyebrow text="The Concept" className="mb-4" />
@@ -76,57 +127,33 @@ export default function HomePage() {
             </p>
           </FadeIn>
 
-          <StaggerContainer className="mt-10" stagger={0.08}>
-            {[
-              {
-                num: 'I',
-                title: 'Private Setting',
-                desc: 'Your villa becomes the venue. No shared dining room. No strangers. Just your guests and the kitchen.',
-              },
-              {
-                num: 'II',
-                title: 'Mediterranean Focus',
-                desc: 'Sicilian and Aegean traditions interpreted through fresh Indonesian produce and imported specialties.',
-              },
-              {
-                num: 'III',
-                title: 'Visible Craft',
-                desc: 'Pasta rolled by hand. Fish filleted at the counter. Fire managed in real time. You see it all.',
-              },
-              {
-                num: 'IV',
-                title: 'Complete Service',
-                desc: 'Tableware, linens, glassware, and service included. We leave the kitchen cleaner than we found it.',
-              },
-            ].map((item) => (
-              <StaggerItem key={item.num} className="mt-4 border-t border-[#2a2a2a] pt-4 first:mt-0 first:border-t-0 first:pt-0">
-                <div className="flex gap-4">
-                  <span className="font-display text-lg text-[#C9A96E]">{item.num}</span>
-                  <div>
-                    <p className="font-body text-sm font-medium text-[#F5F5F0]">{item.title}</p>
-                    <p className="mt-1 font-body text-xs text-[#888880]">{item.desc}</p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
+          <StaggerContainer className="mt-10 grid grid-cols-2 gap-px bg-[#2a2a2a] md:grid-cols-4" stagger={0.08}>
+            {conceptItems.map((item) => {
+              const Icon = item.icon
+              return (
+                <StaggerItem key={item.title} className="bg-[#080808] p-5 md:p-6">
+                  <Icon className="h-5 w-5 text-[#C9A96E]" strokeWidth={1.5} />
+                  <p className="mt-4 font-display text-base text-[#F5F5F0]">{item.title}</p>
+                  <p className="mt-1 font-body text-xs leading-relaxed text-[#888880]">{item.desc}</p>
+                </StaggerItem>
+              )
+            })}
           </StaggerContainer>
         </div>
       </section>
 
       {/* Testimonial Band */}
-      <section className="bg-[#111111] py-12 text-center">
-        <div className="mx-auto max-w-6xl px-4">
+      <section className="bg-[#111111] px-4 py-10 text-center md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="flex justify-center gap-1">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-sm text-[#C9A96E]">
-                  ★
-                </span>
+                <Star key={i} className="h-4 w-4 fill-[#C9A96E] text-[#C9A96E]" />
               ))}
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="mx-auto mt-4 max-w-sm font-display text-xl italic text-[#F5F5F0]">
+            <p className="mx-auto mt-4 max-w-sm font-display text-xl italic text-[#F5F5F0] md:max-w-md md:text-2xl">
               &ldquo;The best private dining experience we have had in Bali. The pasta was unforgettable.&rdquo;
             </p>
           </FadeIn>
@@ -137,7 +164,7 @@ export default function HomePage() {
       </section>
 
       {/* Two Menus Preview */}
-      <section className="px-4 py-16">
+      <section className="px-4 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <SectionEyebrow text="Two Menus" className="mb-4" />
@@ -146,39 +173,29 @@ export default function HomePage() {
             <h2 className="font-display text-[2.4rem] font-light text-[#F5F5F0]">Choose your journey</h2>
           </FadeIn>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <FadeIn delay={0.2} direction="up">
-              <div className="border border-[#2a2a2a] bg-[#111111] p-6">
-                <p className="font-display text-xl text-[#F5F5F0]">The Riviera Menu</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">7 courses</p>
-                <p className="mt-4 font-display text-2xl text-[#C9A96E]">IDR 2.200.000</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
-                <Link
-                  href="/menus"
-                  className="mt-6 inline-flex items-center justify-center border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
-                >
-                  View Menu
-                </Link>
-              </div>
-            </FadeIn>
+          <StaggerContainer className="mt-8 grid gap-px bg-[#2a2a2a] md:grid-cols-2" stagger={0.12}>
+            {menuCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <StaggerItem key={card.name} className="bg-[#111111] p-6 md:p-8">
+                  <Icon className="h-6 w-6 text-[#C9A96E]" strokeWidth={1.5} />
+                  <p className="mt-4 font-display text-xl text-[#F5F5F0]">{card.name}</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">{card.courses}</p>
+                  <p className="mt-4 font-display text-2xl text-[#C9A96E]">{card.price}</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
+                  <Link
+                    href="/menus"
+                    className="mt-6 inline-flex items-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
+                  >
+                    View Menu
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </StaggerItem>
+              )
+            })}
+          </StaggerContainer>
 
-            <FadeIn delay={0.3} direction="up">
-              <div className="border border-[#2a2a2a] bg-[#111111] p-6">
-                <p className="font-display text-xl text-[#F5F5F0]">The Odyssey Menu</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">11 courses + wine pairing</p>
-                <p className="mt-4 font-display text-2xl text-[#C9A96E]">IDR 3.000.000</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
-                <Link
-                  href="/menus"
-                  className="mt-6 inline-flex items-center justify-center border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-colors hover:bg-[#C9A96E] hover:text-[#080808]"
-                >
-                  View Menu
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.4}>
+          <FadeIn delay={0.3}>
             <p className="mt-6 font-body text-xs text-[#888880]">
               Prices include service and tableware. Wine pairing available on Odyssey Menu. Minimum 4 guests.
               Gratuity not included.
@@ -188,23 +205,21 @@ export default function HomePage() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-16 text-center">
-        <div className="mx-auto max-w-6xl px-4">
+      <section className="px-4 py-10 text-center md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <GoldDivider className="mb-12" />
+            <h2 className="font-display text-2xl font-light text-[#F5F5F0] md:text-3xl">Ready for your evening?</h2>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h2 className="font-display text-2xl font-light text-[#F5F5F0]">Ready for your evening?</h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
             <p className="mt-3 font-body text-sm text-[#888880]">Book 3 to 5 days ahead for the best availability.</p>
           </FadeIn>
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.2}>
             <Link
               href="/book"
-              className="mt-6 inline-flex items-center justify-center bg-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-colors hover:bg-[#d4b882]"
+              className="mt-6 inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-colors hover:bg-[#d4b882]"
             >
-              Book Your Evening →
+              Book Your Evening
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </FadeIn>
         </div>
