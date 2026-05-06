@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import {
   Sparkles,
   Clock,
@@ -124,7 +125,20 @@ export default function ExperiencePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="grain relative min-h-[100dvh] overflow-hidden bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]">
+      <section className="grain relative min-h-[100dvh] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/fire-grill.jpg"
+            alt="Fire-grilled cooking"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-[#080808]/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]" />
+        </div>
         <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-4 pb-20 pt-32 md:pb-28 md:pt-40">
           <FadeIn>
             <div className="mb-6 inline-flex items-center gap-2">
@@ -207,20 +221,37 @@ export default function ExperiencePage() {
       {/* Visible Craft */}
       <section className="border-y border-[#2a2a2a]/30 bg-[#111111]/30 px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
-          <FadeIn>
-            <SectionEyebrow text="Visible Craft" className="mb-4" />
-          </FadeIn>
-          <FadeIn delay={0.1} blur>
-            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
-              What you will see
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
-              We do not hide in the kitchen. The counter is the stage. You will watch dough transform,
-              flames adjust, and sauce reduce — all in real time.
-            </p>
-          </FadeIn>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+            {/* Image */}
+            <FadeIn>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/chef-hands.jpg"
+                  alt="Chef cooking at the stove"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </FadeIn>
+            {/* Text */}
+            <div className="flex flex-col justify-center">
+              <FadeIn>
+                <SectionEyebrow text="Visible Craft" className="mb-4" />
+              </FadeIn>
+              <FadeIn delay={0.1} blur>
+                <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
+                  What you will see
+                </h2>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
+                  We do not hide in the kitchen. The counter is the stage. You will watch dough transform,
+                  flames adjust, and sauce reduce — all in real time.
+                </p>
+              </FadeIn>
+            </div>
+          </div>
 
           <StaggerContainer className="mt-12 grid gap-px md:mt-16 md:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {visibleCraft.map((item, i) => (

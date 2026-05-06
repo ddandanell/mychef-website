@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/fade-in'
 import { SectionEyebrow } from '@/components/website/SectionEyebrow'
@@ -49,7 +50,22 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="grain relative min-h-[100dvh] overflow-hidden bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]">
+      <section className="grain relative min-h-[100dvh] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/villa-pool-sunset.jpg"
+            alt="Luxury Bali villa at sunset"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-[#080808]/40" />
+          {/* Gold radial accent */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]" />
+        </div>
         <div className="relative z-10 flex min-h-[100dvh] flex-col justify-end px-4 pb-20 pt-32 md:pb-28 md:pt-40">
           <FadeIn>
             <div className="mb-6 inline-flex items-center gap-2">
@@ -111,22 +127,39 @@ export default function HomePage() {
       {/* Concept Section */}
       <section className="px-4 py-20 md:py-32">
         <div className="mx-auto max-w-6xl">
-          <FadeIn>
-            <SectionEyebrow text="The Concept" className="mb-4" />
-          </FadeIn>
-          <FadeIn delay={0.1} blur>
-            <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
-              Not catering.
-              <br />
-              A private restaurant.
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
-              We do not drop off trays. We arrive early, set your table, cook in your kitchen,
-              and serve course by course — just like a restaurant, except the room is yours.
-            </p>
-          </FadeIn>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+            {/* Image */}
+            <FadeIn>
+              <div className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:h-full">
+                <Image
+                  src="/images/hero-villa-dining.jpg"
+                  alt="Elegant villa dining setup"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </FadeIn>
+            {/* Text */}
+            <div className="flex flex-col justify-center">
+              <FadeIn>
+                <SectionEyebrow text="The Concept" className="mb-4" />
+              </FadeIn>
+              <FadeIn delay={0.1} blur>
+                <h2 className="font-display text-[2rem] font-light text-[#F5F5F0] md:text-[2.8rem] lg:text-[3.2rem]">
+                  Not catering.
+                  <br />
+                  A private restaurant.
+                </h2>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-[#888880] md:text-base">
+                  We do not drop off trays. We arrive early, set your table, cook in your kitchen,
+                  and serve course by course — just like a restaurant, except the room is yours.
+                </p>
+              </FadeIn>
+            </div>
+          </div>
 
           <StaggerContainer className="mt-12 grid grid-cols-2 gap-px md:mt-16 md:grid-cols-4" stagger={0.1}>
             {concepts.map((item) => (
@@ -187,36 +220,62 @@ export default function HomePage() {
 
           <StaggerContainer className="mt-10 grid gap-px md:mt-14 md:grid-cols-2" stagger={0.15}>
             <StaggerItem>
-              <div className="group border border-[#2a2a2a]/50 bg-[#111111]/50 p-6 transition-all duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111] md:p-8">
-                <BookOpen className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
-                <p className="mt-6 font-display text-xl text-[#F5F5F0] md:text-2xl">The Riviera Menu</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">7 courses</p>
-                <p className="mt-4 font-display text-2xl text-[#C9A96E] md:text-3xl">IDR 2.200.000</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
-                <Link
-                  href="/menus"
-                  className="group/btn mt-6 inline-flex items-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
-                >
-                  View Menu
-                  <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover/btn:translate-x-0.5" strokeWidth={2} />
-                </Link>
+              <div className="group relative overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/pasta-making.jpg"
+                    alt="Handmade pasta by our chef"
+                    fill
+                    className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-[#080808]/60" />
+                </div>
+                <div className="relative z-10 p-6 md:p-8">
+                  <BookOpen className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
+                  <p className="mt-6 font-display text-xl text-[#F5F5F0] md:text-2xl">The Riviera Menu</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">7 courses</p>
+                  <p className="mt-4 font-display text-2xl text-[#C9A96E] md:text-3xl">IDR 2.200.000</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
+                  <Link
+                    href="/menus"
+                    className="group/btn mt-6 inline-flex items-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
+                  >
+                    View Menu
+                    <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover/btn:translate-x-0.5" strokeWidth={2} />
+                  </Link>
+                </div>
               </div>
             </StaggerItem>
 
             <StaggerItem>
-              <div className="group border border-[#2a2a2a]/50 bg-[#111111]/50 p-6 transition-all duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111] md:p-8">
-                <Wine className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
-                <p className="mt-6 font-display text-xl text-[#F5F5F0] md:text-2xl">The Odyssey Menu</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">11 courses + wine pairing</p>
-                <p className="mt-4 font-display text-2xl text-[#C9A96E] md:text-3xl">IDR 3.000.000</p>
-                <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
-                <Link
-                  href="/menus"
-                  className="group/btn mt-6 inline-flex items-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
-                >
-                  View Menu
-                  <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover/btn:translate-x-0.5" strokeWidth={2} />
-                </Link>
+              <div className="group relative overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/table-candles.jpg"
+                    alt="Elegant candlelit dining"
+                    fill
+                    className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-[#080808]/60" />
+                </div>
+                <div className="relative z-10 p-6 md:p-8">
+                  <Wine className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
+                  <p className="mt-6 font-display text-xl text-[#F5F5F0] md:text-2xl">The Odyssey Menu</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">11 courses + wine pairing</p>
+                  <p className="mt-4 font-display text-2xl text-[#C9A96E] md:text-3xl">IDR 3.000.000</p>
+                  <p className="mt-1 font-body text-xs text-[#888880]">per guest</p>
+                  <Link
+                    href="/menus"
+                    className="group/btn mt-6 inline-flex items-center gap-2 border border-[#C9A96E] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
+                  >
+                    View Menu
+                    <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover/btn:translate-x-0.5" strokeWidth={2} />
+                  </Link>
+                </div>
               </div>
             </StaggerItem>
           </StaggerContainer>

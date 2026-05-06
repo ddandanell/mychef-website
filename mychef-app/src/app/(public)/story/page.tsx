@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import {
   Users,
   Award,
@@ -78,9 +79,15 @@ export default function StoryPage() {
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="mx-auto max-w-xl">
-              <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 bg-[#111111]/50 transition-all duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111]">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,110,0.15)_0%,_transparent_70%)]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+              <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
+                <Image
+                  src="/images/chef-hands.jpg"
+                  alt="Marco Ferrara cooking"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <div className="mb-2 flex items-center gap-2">
                     <Award className="h-4 w-4 text-[#C9A96E]" strokeWidth={1} />
@@ -124,9 +131,15 @@ export default function StoryPage() {
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="mx-auto max-w-xl">
-              <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 bg-[#111111]/50 transition-all duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111]">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,110,0.15)_0%,_transparent_70%)]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+              <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
+                <Image
+                  src="/images/pasta-making.jpg"
+                  alt="Luca Romano presenting a dish"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <div className="mb-2 flex items-center gap-2">
                     <ChefHat className="h-4 w-4 text-[#C9A96E]" strokeWidth={1} />
