@@ -1,8 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:54321'
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://fhoubciqyenbimpizjmd.supabase.co'
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZob3ViY2lxeWVuYmltcGl6am1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNzg1MTMsImV4cCI6MjA5MzY1NDUxM30.aoTZvXXac17qov1EVfaj44ydVlshUOMhyeEXWQ3vis8'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
