@@ -10,9 +10,6 @@ import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 
-const today = new Date()
-today.setDate(today.getDate() + 3)
-const minDate = today.toISOString().split('T')[0]
 
 const menuOptions = [
   { value: 'riviera', label: 'Riviera 7-course — IDR 2.200.000' },
@@ -197,7 +194,11 @@ function BookForm() {
                   <Input
                     label="Preferred Date"
                     type="date"
-                    min={minDate}
+                    min={(() => {
+                      const d = new Date()
+                      d.setDate(d.getDate() + 3)
+                      return d.toISOString().split('T')[0]
+                    })()}
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required

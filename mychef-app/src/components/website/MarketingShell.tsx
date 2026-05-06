@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState, useEffect } from 'react'
+import { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { WebNav } from './WebNav'
 import { WebFooter } from './WebFooter'
@@ -10,19 +10,10 @@ const marketingPaths = ['/', '/experience', '/menus', '/story', '/events', '/boo
 
 export function MarketingShell({ children }: { children: ReactNode }) {
   const pathname = usePathname()
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // During SSR / static generation, pathname is null.
-  // Wait until client hydration to avoid mismatch.
-  if (!mounted) {
-    return <>{children}</>
-  }
-
-  const isMarketing = pathname ? marketingPaths.includes(pathname) : false
+  // During SSR, pathname is null. Default to showing the marketing shell
+  // for the static marketing pages since they are the primary use case.
+  const isMarketing = pathname === null || marketingPaths.includes(pathname)
 
   if (!isMarketing) {
     return <>{children}</>
