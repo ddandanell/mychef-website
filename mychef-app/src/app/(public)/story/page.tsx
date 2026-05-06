@@ -49,7 +49,7 @@ export default function StoryPage() {
     <div>
       {/* Hero */}
       <section className="grain relative overflow-hidden bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]">
-        <div className="relative z-10 flex min-h-[60dvh] flex-col justify-end px-4 pb-20 pt-32 md:min-h-[70dvh] md:px-8 md:pb-28 md:pt-40">
+        <div className="relative z-10 flex min-h-[50dvh] flex-col justify-end px-4 pb-20 pt-32 md:px-8 md:pb-28 md:pt-40">
           <FadeIn>
             <div className="mb-6 inline-flex items-center gap-2">
               <Users className="h-3.5 w-3.5 text-[#C9A96E]" strokeWidth={1} />
@@ -82,13 +82,13 @@ export default function StoryPage() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,110,0.15)_0%,_transparent_70%)]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <SectionEyebrow text="Executive Chef & Co-Founder" className="mb-2" />
-                  <div className="flex items-center gap-2">
-                    <Award className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
-                    <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
-                      Marco Ferrara
-                    </h2>
+                  <div className="mb-2 flex items-center gap-2">
+                    <Award className="h-4 w-4 text-[#C9A96E]" strokeWidth={1} />
+                    <SectionEyebrow text="Executive Chef & Co-Founder" />
                   </div>
+                  <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
+                    Marco Ferrara
+                  </h2>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ export default function StoryPage() {
                 <div className="flex items-center gap-1.5">
                   <MapPin className="h-3 w-3 text-[#888880]" strokeWidth={1} />
                   <p className="font-body text-xs uppercase tracking-wider text-[#888880]">
-                    Sicily, Italy · Head Judge · 3 Michelin Properties · 18 years fine dining
+                    Sicily, Italy · 3 Michelin Properties · 18 years
                   </p>
                 </div>
                 <p className="mt-4 font-body text-sm leading-relaxed text-[#888880] md:text-base">
@@ -125,16 +125,16 @@ export default function StoryPage() {
           <FadeIn>
             <div className="mx-auto max-w-xl">
               <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 bg-[#111111]/50 transition-all duration-500 hover:border-[#C9A96E]/20 hover:bg-[#111111]">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(160,140,100,0.12)_0%,_transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,110,0.15)_0%,_transparent_70%)]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <SectionEyebrow text="Chef & Culinary Director" className="mb-2" />
-                  <div className="flex items-center gap-2">
-                    <ChefHat className="h-5 w-5 text-[#C9A96E]" strokeWidth={1} />
-                    <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
-                      Luca Romano
-                    </h2>
+                  <div className="mb-2 flex items-center gap-2">
+                    <ChefHat className="h-4 w-4 text-[#C9A96E]" strokeWidth={1} />
+                    <SectionEyebrow text="Chef & Culinary Director" />
                   </div>
+                  <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
+                    Luca Romano
+                  </h2>
                 </div>
               </div>
 
@@ -142,7 +142,7 @@ export default function StoryPage() {
                 <div className="flex items-center gap-1.5">
                   <MapPin className="h-3 w-3 text-[#888880]" strokeWidth={1} />
                   <p className="font-body text-xs uppercase tracking-wider text-[#888880]">
-                    Naples, Italy · Award-winning restaurant chef · Pasta specialist · Bali-based
+                    Naples, Italy · Pasta specialist · Bali-based
                   </p>
                 </div>
                 <p className="mt-4 font-body text-sm leading-relaxed text-[#888880] md:text-base">
@@ -164,7 +164,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* How myCHEF Was Born */}
       <section className="border-y border-[#2a2a2a]/30 px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
@@ -204,7 +204,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Training */}
+      {/* Training Section */}
       <section className="bg-[#111111]/30 px-4 py-20 md:px-8 md:py-32">
         <div className="mx-auto max-w-3xl text-center">
           <FadeIn>

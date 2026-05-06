@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import {
   Sparkles,
   Clock,
@@ -16,7 +15,6 @@ import {
   MapPin,
   Home,
   HelpCircle,
-  ArrowRight,
 } from 'lucide-react'
 import { SectionEyebrow } from '@/components/website/SectionEyebrow'
 import { GoldDivider } from '@/components/website/GoldDivider'
@@ -148,29 +146,6 @@ export default function ExperiencePage() {
               A complete evening from arrival to digestivo. Handmade pasta, fire-grilled fish,
               and visible craft — all in your villa.
             </p>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/book"
-                className="group inline-flex items-center gap-3 bg-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#080808] transition-all duration-500 hover:bg-[#d4b882] active:scale-[0.98]"
-              >
-                Book Your Evening
-                <span className="flex h-6 w-6 items-center justify-center bg-[#080808]/10 transition-transform duration-500 group-hover:translate-x-0.5">
-                  <ArrowRight className="h-3 w-3" strokeWidth={2} />
-                </span>
-              </Link>
-              <Link
-                href="/menus"
-                className="group inline-flex items-center gap-3 border border-[#C9A96E] px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
-              >
-                View Menus
-                <span className="flex h-6 w-6 items-center justify-center border border-[#C9A96E]/30 transition-all duration-500 group-hover:border-[#080808]/20">
-                  <ArrowRight className="h-3 w-3 transition-transform duration-500 group-hover:translate-x-0.5" strokeWidth={2} />
-                </span>
-              </Link>
-            </div>
           </FadeIn>
 
           {/* Scroll indicator */}
