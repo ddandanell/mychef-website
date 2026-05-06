@@ -1,0 +1,9 @@
+export const ROOT_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN || 'localhost:3000'
+export const MIN_GUESTS = 4
+export const ADHOC_APPROVAL_THRESHOLD = 500000
+export const OFFER_EXPIRY_DAYS = 7
+export const DEPOSIT_PERCENT = 25
+export const PARTNER_COMMISSION = 10
+export const INGREDIENTS_COST = 15
+export const STAFF_COST = 25
+export const PROFIT_SPLIT = 50
