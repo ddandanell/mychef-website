@@ -23,16 +23,13 @@ function buildRuleBasedResponse(query: string): string {
     )
   }
 
-  // Compose response from top document(s)
   const mainDoc = docs[0]
   let response = mainDoc.content
 
-  // Add related info if multiple docs match well
   if (docs.length > 1) {
     response += '\n\n' + docs[1].content
   }
 
-  // Context-aware follow-up suggestions based on query intent
   const q = query.toLowerCase()
   if (q.includes('price') || q.includes('cost') || q.includes('how much')) {
     response += '\n\nWould you like to check availability for your preferred date?'
@@ -51,9 +48,87 @@ function buildRuleBasedResponse(query: string): string {
   return response
 }
 
+function buildSystemPrompt(contextDocs: string): string {
+  return (
+    'You are the Aegean Riviera concierge — knowledgeable, warm, and precise. ' +
+    'You speak in short, declarative sentences. No marketing fluff. ' +
+    'Use the provided knowledge to answer accurately. ' +
+    "If you do not know something, say so honestly and offer to connect the guest with the team on WhatsApp.\n\n" +
+    'KNOWLEDGE:\n' +
+    contextDocs
+  )
+}
+
+async function* streamRuleBased(query: string): AsyncGenerator<string> {
+  const response = buildRuleBasedResponse(query)
+  const words = response.split(/\s+/)
+  for (let i = 0; i < words.length; i++) {
+    yield (i > 0 ? ' ' : '') + words[i]
+    if (i % 5 === 0) await new Promise((r) => setTimeout(r, 15))
+  }
+}
+
 /**
- * Stream a response using OpenRouter (if API key is configured).
- * Falls back to rule-based responder if no key or on error.
+ * Stream from an OpenAI-compatible endpoint (DeepSeek, OpenRouter, etc.)
+ */
+async function* streamOpenAICompatible(
+  apiKey: string,
+  baseURL: string,
+  model: string,
+  messages: ChatMessage[],
+  systemPrompt: string
+): AsyncGenerator<string> {
+  const res = await fetch(`${baseURL}/chat/completions`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...messages.map((m) => ({ role: m.role, content: m.content })),
+      ],
+      stream: true,
+      temperature: 0.7,
+      max_tokens: 800,
+    }),
+  })
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => '')
+    throw new Error(`${res.status}: ${text}`)
+  }
+
+  const reader = res.body!.getReader()
+  const decoder = new TextDecoder()
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+
+    const chunk = decoder.decode(value, { stream: true })
+    const lines = chunk.split('\n').filter((line) => line.trim())
+
+    for (const line of lines) {
+      if (line.startsWith('data: ')) {
+        const data = line.slice(6)
+        if (data === '[DONE]') return
+        try {
+          const parsed = JSON.parse(data)
+          const content = parsed.choices?.[0]?.delta?.content
+          if (content) yield content
+        } catch {
+          // ignore parse errors
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Try providers in order: DeepSeek → OpenRouter → rule-based
  */
 async function* streamResponse(
   messages: ChatMessage[]
@@ -61,84 +136,52 @@ async function* streamResponse(
   const lastQuery = messages[messages.length - 1].content
   const docs = findRelevantDocs(lastQuery, 3)
   const contextDocs = docs.map((d) => `--- ${d.title} ---\n${d.content}`).join('\n\n')
-  const apiKey = process.env.OPENROUTER_API_KEY
+  const systemPrompt = buildSystemPrompt(contextDocs)
 
-  if (!apiKey) {
-    // No API key — use rule-based with word-by-word streaming
-    const response = buildRuleBasedResponse(lastQuery)
-    const words = response.split(/\s+/)
-    for (let i = 0; i < words.length; i++) {
-      yield (i > 0 ? ' ' : '') + words[i]
-      if (i % 5 === 0) await new Promise((r) => setTimeout(r, 15))
+  // 1. DeepSeek (preferred — cheap, fast, no credit needed for signup bonus)
+  const deepseekKey = process.env.DEEPSEEK_API_KEY
+  if (deepseekKey) {
+    try {
+      console.log('[AI] Using DeepSeek')
+      for await (const chunk of streamOpenAICompatible(
+        deepseekKey,
+        'https://api.deepseek.com/v1',
+        'deepseek-chat',
+        messages,
+        systemPrompt
+      )) {
+        yield chunk
+      }
+      return
+    } catch (err) {
+      console.log('[AI] DeepSeek failed:', (err as Error).message)
     }
-    return
   }
 
-  const systemPrompt =
-    'You are the Aegean Riviera concierge — knowledgeable, warm, and precise. ' +
-    'You speak in short, declarative sentences. No marketing fluff. ' +
-    'Use the provided knowledge to answer accurately. ' +
-    "If you do not know something, say so honestly and offer to connect the guest with the team on WhatsApp.\n\n" +
-    'KNOWLEDGE:\n' +
-    contextDocs
-
-  try {
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://mychef-it-74fr.vercel.app',
-        'X-Title': 'Aegean Riviera Concierge',
-      },
-      body: JSON.stringify({
-        model: 'openai/gpt-4o-mini',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...messages.map((m) => ({ role: m.role, content: m.content })),
-        ],
-        stream: true,
-        temperature: 0.7,
-        max_tokens: 800,
-      }),
-    })
-
-    if (!res.ok) {
-      throw new Error(`OpenRouter error: ${res.status}`)
-    }
-
-    const reader = res.body!.getReader()
-    const decoder = new TextDecoder()
-
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-
-      const chunk = decoder.decode(value, { stream: true })
-      const lines = chunk.split('\n').filter((line) => line.trim())
-
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const data = line.slice(6)
-          if (data === '[DONE]') return
-          try {
-            const parsed = JSON.parse(data)
-            const content = parsed.choices?.[0]?.delta?.content
-            if (content) yield content
-          } catch {
-            // ignore parse errors
-          }
-        }
+  // 2. OpenRouter (fallback)
+  const openrouterKey = process.env.OPENROUTER_API_KEY
+  if (openrouterKey) {
+    try {
+      console.log('[AI] Using OpenRouter')
+      for await (const chunk of streamOpenAICompatible(
+        openrouterKey,
+        'https://openrouter.ai/api/v1',
+        'openai/gpt-4o-mini',
+        messages,
+        systemPrompt
+      )) {
+        yield chunk
       }
+      return
+    } catch (err) {
+      console.log('[AI] OpenRouter failed:', (err as Error).message)
     }
-  } catch {
-    // Fallback to rule-based on any error
-    const response = buildRuleBasedResponse(lastQuery)
-    const words = response.split(/\s+/)
-    for (let i = 0; i < words.length; i++) {
-      yield (i > 0 ? ' ' : '') + words[i]
-      if (i % 5 === 0) await new Promise((r) => setTimeout(r, 15))
-    }
+  }
+
+  // 3. Rule-based (always works, zero cost)
+  console.log('[AI] Using rule-based fallback')
+  for await (const chunk of streamRuleBased(lastQuery)) {
+    yield chunk
   }
 }
 
