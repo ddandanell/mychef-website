@@ -54,15 +54,17 @@ export default function HomePage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/villa-pool-sunset.jpg"
-            alt="Luxury Bali villa at sunset"
+            src="/images/hero-mychef.png"
+            alt="MyCHEF preparing Mediterranean cuisine"
             fill
-            className="object-cover"
+            className="object-cover object-[65%_center] md:object-right"
             priority
             sizes="100vw"
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-[#080808]/40" />
+          {/* Dark overlay for text readability — left to right gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#080808]/80 to-[#080808]/20" />
+          {/* Mobile: stronger bottom-to-top gradient for stacked text */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent md:hidden" />
           {/* Gold radial accent */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,_rgba(201,169,110,0.08)_0%,_transparent_60%)]" />
         </div>
