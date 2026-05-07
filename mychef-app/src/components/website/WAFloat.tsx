@@ -174,8 +174,17 @@ const ENTRY_OPTIONS: { flow: FlowId; num: string; title: string; desc: string }[
 
 const uid = () => Math.random().toString(36).slice(2, 10)
 
+/* ---------- routing config ---------- */
+const FLOW_ROUTING: Record<FlowId, { label: string; number?: string }> = {
+  new: { label: 'NEW RESERVATION' },
+  existing: { label: 'EXISTING RESERVATION' },
+  event: { label: 'EVENT CONSULTATION' },
+  corporate: { label: 'CORPORATE & RETAINER' },
+}
+
 function generateHandoverMessage(flow: FlowId, answers: Record<string, string>): string {
-  const lines: string[] = []
+  const tag = FLOW_ROUTING[flow].label
+  const lines: string[] = [`[${tag}]`]
 
   switch (flow) {
     case 'new':
@@ -342,7 +351,8 @@ export function WAFloat() {
         },
       ])
       setTimeout(() => {
-        window.open(getWhatsAppUrl(msg), '_blank')
+        const routing = FLOW_ROUTING[f]
+        window.open(getWhatsAppUrl(msg, routing.number), '_blank')
       }, 600)
     }, 1200)
   }
@@ -350,7 +360,7 @@ export function WAFloat() {
   /* ---------- skip to direct ---------- */
 
   const skipToDirect = () => {
-    window.open(getWhatsAppUrl('Hi myCHEF! I would like to book a private dining evening.'), '_blank')
+    window.open(getWhatsAppUrl('Hi myCHEF! I would like to book a private dining evening.', CONTACT.whatsappNumber), '_blank')
   }
 
   /* ---------------------------------------------------------------- */
