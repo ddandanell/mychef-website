@@ -181,8 +181,21 @@ export default function HomePage() {
       </section>
 
       {/* Testimonial Band */}
-      <section className="border-y border-[#2a2a2a]/30 bg-[#111111]/30 px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl text-center">
+      <section className="relative overflow-hidden border-y border-[#2a2a2a]/30 px-4 py-16 md:py-24">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/testimonial-bg.png"
+            alt="Luxury private dining table setting"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-[#080808]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/50 via-transparent to-[#080808]/50" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-6xl text-center">
           <FadeIn>
             <div className="flex justify-center gap-1">
               {[...Array(5)].map((_, i) => (
@@ -196,13 +209,13 @@ export default function HomePage() {
           </FadeIn>
           <FadeIn delay={0.1} blur>
             <p className="mx-auto mt-6 max-w-md font-display text-xl italic leading-relaxed text-[#F5F5F0] md:max-w-lg md:text-2xl">
-              &ldquo;The best private dining experience we have had in Bali.
-              The pasta was unforgettable.&rdquo;
+              &ldquo;Marco rolled pasta in front of our anniversary table. The lobster ravioli is the
+              dish I will remember from Bali.&rdquo;
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="mt-4 font-body text-xs uppercase tracking-wider text-[#888880]">
-              — Guest, Seminyak Villa
+              — Élise R., Villa Tantangan, July 2025
             </p>
           </FadeIn>
         </div>
@@ -226,8 +239,8 @@ export default function HomePage() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/images/pasta-making.jpg"
-                    alt="Handmade pasta by our chef"
+                    src="/images/menu-riviera-spread.webp"
+                    alt="The Riviera Menu Mediterranean spread"
                     fill
                     className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -256,8 +269,8 @@ export default function HomePage() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/images/table-candles.jpg"
-                    alt="Elegant candlelit dining"
+                    src="/images/villa-dinner-romantic.webp"
+                    alt="Romantic candlelit villa dinner"
                     fill
                     className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -284,7 +297,7 @@ export default function HomePage() {
 
           <FadeIn delay={0.3}>
             <p className="mt-6 font-body text-xs text-[#888880]">
-              Prices include service and tableware. Wine pairing available on Odyssey Menu. Minimum 4 guests.
+              Prices include chef service, tableware, linens, and kitchen clean-up. Wine pairing available on Odyssey Menu. Standard minimum 4 guests. 2-guest minimum spend applies for intimate occasions.
             </p>
           </FadeIn>
         </div>

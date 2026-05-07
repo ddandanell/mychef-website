@@ -51,13 +51,22 @@ export function WebNav() {
             }`}
           >
             {/* Logo */}
-            <Link href="/" className="flex flex-col">
-              <span className="font-display text-lg font-light tracking-wide text-[#F5F5F0] md:text-xl">
-                myCHEF
-              </span>
-              <span className="font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
-                Aegean Riviera
-              </span>
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="relative h-9 w-9 overflow-hidden rounded-full">
+                <img
+                  src="/images/logo-mychef.webp"
+                  alt="myCHEF"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display text-lg font-light tracking-wide text-[#F5F5F0] md:text-xl">
+                  myCHEF
+                </span>
+                <span className="font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
+                  Aegean Riviera
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Nav */}

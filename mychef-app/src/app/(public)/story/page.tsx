@@ -41,7 +41,12 @@ const timeline = [
   {
     icon: Crown,
     title: '2025 — Aegean Riviera',
-    desc: 'The Odyssey is added. A full brigade of trained Indonesian sous chefs. The myCHEF standard becomes the benchmark for villa dining in Bali.',
+    desc: 'The Odyssey is added. A full brigade of trained sous chefs. Over 240 private dinners hosted across 38 villas.',
+  },
+  {
+    icon: Sparkles,
+    title: '2026 — The Standard',
+    desc: 'Two menus. One team. One table per evening. The benchmark for private Mediterranean dining in Bali.',
   },
 ]
 
@@ -81,8 +86,8 @@ export default function StoryPage() {
             <div className="mx-auto max-w-xl">
               <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
                 <Image
-                  src="/images/chef-hands.jpg"
-                  alt="Marco Ferrara cooking"
+                  src="/images/chef-marco.webp"
+                  alt="Chef Marco Ferrara at work in a Bali villa kitchen"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 500px"
@@ -133,8 +138,8 @@ export default function StoryPage() {
             <div className="mx-auto max-w-xl">
               <div className="group relative aspect-[3/4] overflow-hidden border border-[#2a2a2a]/50 transition-all duration-500 hover:border-[#C9A96E]/20">
                 <Image
-                  src="/images/pasta-making.jpg"
-                  alt="Luca Romano presenting a dish"
+                  src="/images/chef-luca.webp"
+                  alt="Chef Luca Romano rolling handmade pasta"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 500px"
@@ -230,10 +235,10 @@ export default function StoryPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mx-auto mt-6 max-w-lg font-body text-sm leading-relaxed text-[#888880] md:text-base">
-              Every myCHEF sous chef is trained in-house by Marco and Luca. Not just recipes —
-              technique, timing, plating under pressure, and the invisible art of reading a room. The
-              team is Indonesian, the standards are Italian, and the result is something that can only
-              happen here.
+              Every myCHEF brigade member is trained in-house by Marco and Luca. Not just recipes —
+              technique, timing, plating under pressure, and the invisible art of reading a room. Our
+              team brings together Italian culinary standards with deep local knowledge of Balinese
+              ingredients and villa service. The result is something that can only happen here.
             </p>
           </FadeIn>
         </div>

@@ -226,8 +226,8 @@ export default function ExperiencePage() {
             <FadeIn>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/chef-hands.jpg"
-                  alt="Chef cooking at the stove"
+                  src="/images/fire-grill-action.webp"
+                  alt="Chef fire-grilling sea bass over open flames"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -336,7 +336,7 @@ export default function ExperiencePage() {
             <div className="mt-10 md:mt-14">
               <FAQItem
                 question="What is the minimum number of guests?"
-                answer="Minimum 4 guests per booking. Maximum 20. Larger groups by request."
+                answer="Standard bookings require a minimum of 4 guests. For intimate occasions such as honeymoons or anniversaries, we accept 2 guests at a fixed minimum spend of IDR 8,800,000. Maximum 20. Larger groups by request."
               />
               <FAQItem
                 question="Do you bring all the equipment?"
@@ -352,7 +352,7 @@ export default function ExperiencePage() {
               />
               <FAQItem
                 question="How far in advance should we book?"
-                answer="3 to 5 days recommended. Last-minute under 48 hours — contact WhatsApp directly."
+                answer="3 to 5 days recommended. Last-minute under 48 hours — contact email directly."
               />
               <FAQItem
                 question="What happens if we need to cancel?"

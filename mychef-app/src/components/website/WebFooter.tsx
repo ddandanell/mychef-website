@@ -36,13 +36,22 @@ export function WebFooter() {
       <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
         {/* Top */}
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div>
-            <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
-              myCHEF
-            </h2>
-            <p className="mt-2 font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
-              Aegean Riviera · Mediterranean Fine Dining · Bali
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+              <img
+                src="/images/logo-mychef.webp"
+                alt="myCHEF"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="font-display text-3xl font-light text-[#F5F5F0] md:text-4xl">
+                myCHEF
+              </h2>
+              <p className="mt-1 font-body text-[0.55rem] font-medium uppercase tracking-[0.2em] text-[#C9A96E]">
+                Aegean Riviera · Mediterranean Fine Dining · Bali
+              </p>
+            </div>
           </div>
           <button
             onClick={scrollToTop}

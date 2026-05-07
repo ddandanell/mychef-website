@@ -9,9 +9,11 @@ import {
   Home,
   CalendarDays,
   MessageCircle,
+  Mail,
   Star,
   ArrowRight,
 } from 'lucide-react'
+import { CONTACT, getWhatsAppUrl } from '@/lib/contact'
 import { SectionEyebrow } from '@/components/website/SectionEyebrow'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/fade-in'
 
@@ -26,7 +28,7 @@ const eventTypes = [
     number: '01',
     title: 'Honeymoon & Romance',
     description:
-      'A private dinner for two, candlelight, handmade pasta, and wine.',
+      'A private dinner for two with candlelight, handmade pasta, and wine. Minimum spend IDR 8,800,000 applies.',
     occasion: 'honeymoon',
     Icon: Heart,
   },
@@ -72,7 +74,7 @@ export default function EventsPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/table-candles.jpg"
+            src="/images/villa-dinner-romantic.webp"
             alt="Elegant candlelit dinner setting"
             fill
             className="object-cover"
@@ -151,13 +153,17 @@ export default function EventsPage() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <a
-              href="https://wa.me/6281234567890?text=Hi%20myCHEF!%20I'd%20like%20to%20discuss%20a%20custom%20event."
+              href={getWhatsAppUrl("Hi myCHEF! I'd like to discuss a custom event.")}
               target="_blank"
               rel="noopener noreferrer"
               className="group mt-8 inline-flex items-center gap-3 border border-[#C9A96E] px-8 py-4 font-body text-xs font-medium uppercase tracking-[0.15em] text-[#C9A96E] transition-all duration-500 hover:bg-[#C9A96E] hover:text-[#080808] active:scale-[0.98]"
             >
-              <MessageCircle className="h-4 w-4" strokeWidth={1} />
-              WhatsApp
+              {CONTACT.whatsappNumber ? (
+                <MessageCircle className="h-4 w-4" strokeWidth={1} />
+              ) : (
+                <Mail className="h-4 w-4" strokeWidth={1} />
+              )}
+              {CONTACT.whatsappNumber ? 'WhatsApp' : 'Email Us'}
             </a>
           </FadeIn>
         </div>
@@ -179,14 +185,13 @@ export default function EventsPage() {
           </FadeIn>
           <FadeIn delay={0.1} blur>
             <p className="mx-auto mt-6 max-w-md font-display text-xl italic leading-relaxed text-[#F5F5F0] md:max-w-lg md:text-2xl">
-              &ldquo;We booked a myCHEF dinner for our board retreat in Canggu. The food was
-              extraordinary, the pacing intentional, and the evening became the highlight of our
-              trip.&rdquo;
+              &ldquo;We booked myCHEF for our board retreat in Canggu. The pacing was intentional,
+              the wine pairings spot-on, and the evening became the highlight of our trip.&rdquo;
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="mt-4 font-body text-xs uppercase tracking-wider text-[#888880]">
-              &mdash; Corporate Client
+              — James T., CFO, London — Villa Arnalaya, March 2026
             </p>
           </FadeIn>
         </div>
