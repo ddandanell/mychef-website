@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Phone, Instagram, MapPin, ArrowUp, Mail } from 'lucide-react'
+import { Phone, Instagram, MapPin, ArrowUp, Mail, LogIn } from 'lucide-react'
+import { CONTACT, getWhatsAppUrl } from '@/lib/contact'
 
 const footerLinks = [
   { href: '/', label: 'Home' },
@@ -11,6 +12,12 @@ const footerLinks = [
   { href: '/story', label: 'Story' },
   { href: '/events', label: 'Events' },
   { href: '/book', label: 'Book' },
+]
+
+const legalLinks = [
+  { href: '/terms', label: 'Terms' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/cancellation', label: 'Cancellation' },
 ]
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -64,36 +71,75 @@ export function WebFooter() {
         {/* Contact */}
         <div className="mt-8 flex flex-wrap gap-6">
           <a
-            href="https://wa.me/6281234567890"
+            href={getWhatsAppUrl('Hi myCHEF! I would like to book a private dining evening.')}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 font-body text-xs text-[#888880] transition-colors hover:text-[#C9A96E]"
           >
             <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
-            WhatsApp
+            {CONTACT.whatsappNumber ? 'WhatsApp' : 'Email Us'}
           </a>
           <a
-            href="https://instagram.com/mychef.id"
+            href={CONTACT.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 font-body text-xs text-[#888880] transition-colors hover:text-[#C9A96E]"
           >
             <Instagram className="h-3.5 w-3.5" strokeWidth={1.5} />
-            Instagram
+            {CONTACT.instagramHandle}
+          </a>
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="group flex items-center gap-2 font-body text-xs text-[#888880] transition-colors hover:text-[#C9A96E]"
+          >
+            <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
+            {CONTACT.email}
           </a>
           <span className="flex items-center gap-2 font-body text-xs text-[#888880]">
             <MapPin className="h-3.5 w-3.5" strokeWidth={1.5} />
-            Bali, Indonesia
+            {CONTACT.location}
           </span>
         </div>
 
+        {/* Staff / Partner */}
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <span className="font-body text-xs text-[#888880]">Team access:</span>
+          <Link
+            href="/login"
+            className="inline-flex items-center gap-1.5 rounded border border-[#2a2a2a] px-3 py-1.5 font-body text-[0.65rem] uppercase tracking-wider text-[#888880] transition-all hover:border-[#C9A96E] hover:text-[#C9A96E]"
+          >
+            <LogIn className="h-3 w-3" strokeWidth={1.5} />
+            Sign in as Team
+          </Link>
+          <Link
+            href="/login"
+            className="inline-flex items-center gap-1.5 rounded border border-[#2a2a2a] px-3 py-1.5 font-body text-[0.65rem] uppercase tracking-wider text-[#888880] transition-all hover:border-[#C9A96E] hover:text-[#C9A96E]"
+          >
+            <LogIn className="h-3 w-3" strokeWidth={1.5} />
+            Sign in as Partner
+          </Link>
+        </div>
+
+        {/* Legal */}
+        <nav className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+          {legalLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-body text-[0.6rem] uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
         {/* Bottom */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-[#2a2a2a]/50 pt-6 md:flex-row md:items-center">
+        <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-[#2a2a2a]/50 pt-6 md:flex-row md:items-center">
           <p className="font-body text-[0.65rem] text-[#888880]">
-            © 2026 myCHEF · Aegean Riviera · All rights reserved
+            © {new Date().getFullYear()} myCHEF · Aegean Riviera · All rights reserved
           </p>
           <p className="font-body text-[0.65rem] text-[#888880]">
-            Private Mediterranean Fine Dining
+            Private Mediterranean Fine Dining · Serving Bali villas nightly · Bookings {CONTACT.leadTime} ahead
           </p>
         </div>
       </div>

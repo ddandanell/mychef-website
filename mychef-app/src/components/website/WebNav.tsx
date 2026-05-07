@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Calendar } from 'lucide-react'
+import { Menu, X, Calendar, LogIn } from 'lucide-react'
 
 const navLinks = [
   { href: '/experience', label: 'Experience' },
@@ -90,6 +90,13 @@ export function WebNav() {
                   <Calendar className="h-3.5 w-3.5" strokeWidth={1.5} />
                 </span>
               </Link>
+              <Link
+                href="/login"
+                className="ml-3 inline-flex items-center gap-1 font-body text-[0.6rem] uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
+              >
+                <LogIn className="h-3 w-3" strokeWidth={1.5} />
+                Team
+              </Link>
             </div>
 
             {/* Hamburger */}
@@ -152,6 +159,26 @@ export function WebNav() {
                     </motion.div>
                   )
                 )}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.45, duration: 0.4, ease: easeOutExpo }}
+                >
+                  <Link
+                    href="/login"
+                    onClick={() => setDrawerOpen(false)}
+                    className="block py-3 font-body text-sm uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
+                  >
+                    Sign in as Team
+                  </Link>
+                  <Link
+                    href="/login"
+                    onClick={() => setDrawerOpen(false)}
+                    className="block py-3 font-body text-sm uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
+                  >
+                    Sign in as Partner
+                  </Link>
+                </motion.div>
               </nav>
               <motion.p
                 initial={{ opacity: 0 }}
