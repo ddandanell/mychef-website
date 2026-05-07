@@ -42,6 +42,12 @@ export function FadeIn({
         ...offset,
         ...(blur ? { filter: 'blur(8px)' } : {}),
       }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        y: 0,
+        filter: blur ? 'blur(0px)' : undefined,
+      }}
       whileInView={{
         opacity: 1,
         x: 0,
@@ -73,6 +79,7 @@ export function StaggerContainer({
     <motion.div
       className={className}
       initial="hidden"
+      animate="visible"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       variants={{

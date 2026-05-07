@@ -13,7 +13,7 @@ export default async function PartnerLayout({
   const isDemo = !user
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-28">
       {isDemo && (
         <div className="bg-warning/20 px-4 py-2 text-center text-xs text-warning">
           🛠️ Demo Mode — Not logged in. Some features require login.
