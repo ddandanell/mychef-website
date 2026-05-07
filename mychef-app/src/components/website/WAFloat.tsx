@@ -2,21 +2,22 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MessageCircle, Mail, Send, ArrowLeft, Sparkles } from 'lucide-react'
+import { X, MessageCircle, Mail, Send, ArrowLeft, Sparkles, Bot } from 'lucide-react'
 import { CONTACT, getWhatsAppUrl } from '@/lib/contact'
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
-type FlowId = 'new' | 'existing' | 'event' | 'corporate'
+type FlowId = 'new' | 'existing' | 'event' | 'corporate' | 'ai-chat'
 
-interface Message {
+interface ChatMsg {
   id: string
   from: 'concierge' | 'user'
   text: string
   options?: Option[]
   input?: { placeholder: string; key: string }
+  isStreaming?: boolean
 }
 
 interface Option {
@@ -36,7 +37,7 @@ interface FlowStep {
 /*  Flow definitions                                                   */
 /* ------------------------------------------------------------------ */
 
-const FLOWS: Record<FlowId, FlowStep[]> = {
+const FLOWS: Record<Exclude<FlowId, 'ai-chat'>, FlowStep[]> = {
   new: [
     {
       id: 'guests',
@@ -223,6 +224,7 @@ const ENTRY_OPTIONS: { flow: FlowId; num: string; title: string; desc: string }[
   { flow: 'existing', num: '02', title: 'Existing Reservation', desc: 'Modify or confirm' },
   { flow: 'event', num: '03', title: 'Event Consultation', desc: 'Birthdays, proposals, bespoke' },
   { flow: 'corporate', num: '04', title: 'Corporate & Retainer', desc: 'Partnerships, contracts' },
+  { flow: 'ai-chat', num: '05', title: 'Ask Anything', desc: 'AI concierge — menus, pricing, details' },
 ]
 
 /* ------------------------------------------------------------------ */
@@ -232,14 +234,14 @@ const ENTRY_OPTIONS: { flow: FlowId; num: string; title: string; desc: string }[
 const uid = () => Math.random().toString(36).slice(2, 10)
 
 /* ---------- routing config ---------- */
-const FLOW_ROUTING: Record<FlowId, { label: string; number?: string }> = {
+const FLOW_ROUTING: Record<Exclude<FlowId, 'ai-chat'>, { label: string; number?: string }> = {
   new: { label: 'NEW RESERVATION' },
   existing: { label: 'EXISTING RESERVATION' },
   event: { label: 'EVENT CONSULTATION' },
   corporate: { label: 'CORPORATE & RETAINER' },
 }
 
-function generateHandoverMessage(flow: FlowId, answers: Record<string, string>): string {
+function generateHandoverMessage(flow: Exclude<FlowId, 'ai-chat'>, answers: Record<string, string>): string {
   const tag = FLOW_ROUTING[flow].label
   const lines: string[] = [`[${tag}]`]
 
@@ -287,12 +289,14 @@ function generateHandoverMessage(flow: FlowId, answers: Record<string, string>):
 
 export function WAFloat() {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<ChatMsg[]>([])
   const [flow, setFlow] = useState<FlowId | null>(null)
   const [stepIndex, setStepIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [inputValue, setInputValue] = useState('')
   const [showTyping, setShowTyping] = useState(false)
+  const [aiMessages, setAiMessages] = useState<{ role: 'user' | 'assistant'; content: string }[]>([])
+  const [isAiLoading, setIsAiLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const isEmail = !CONTACT.whatsappNumber
@@ -301,7 +305,7 @@ export function WAFloat() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [messages, showTyping])
+  }, [messages, showTyping, isAiLoading])
 
   /* ---------- open / reset ---------- */
 
@@ -327,6 +331,7 @@ export function WAFloat() {
     setStepIndex(0)
     setAnswers({})
     setInputValue('')
+    setAiMessages([])
     setMessages([
       {
         id: uid(),
@@ -350,9 +355,81 @@ export function WAFloat() {
     }, 800)
   }
 
+  /* ---------- AI chat ---------- */
+
+  const startAiChat = () => {
+    setFlow('ai-chat')
+    setShowTyping(true)
+    setTimeout(() => {
+      setShowTyping(false)
+      setMessages((m) => [
+        ...m,
+        {
+          id: uid(),
+          from: 'concierge',
+          text: 'I am your Aegean Riviera concierge.\n\nAsk me anything — menus, pricing, dietary needs, our chefs, villa locations, booking process.',
+        },
+      ])
+    }, 1000)
+  }
+
+  const sendAiMessage = async () => {
+    if (!inputValue.trim() || isAiLoading) return
+    const text = inputValue.trim()
+    addUserMessage(text)
+    setInputValue('')
+    setIsAiLoading(true)
+
+    const newAiMessages = [...aiMessages, { role: 'user' as const, content: text }]
+    setAiMessages(newAiMessages)
+
+    // Add empty assistant message that will be filled streaming
+    const assistantId = uid()
+    setMessages((m) => [...m, { id: assistantId, from: 'concierge', text: '', isStreaming: true }])
+
+    try {
+      const res = await fetch('/api/ai/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: newAiMessages }),
+      })
+
+      if (!res.ok) throw new Error('Failed')
+
+      const reader = res.body!.getReader()
+      const decoder = new TextDecoder()
+      let fullText = ''
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        const chunk = decoder.decode(value, { stream: true })
+        fullText += chunk
+        setMessages((m) =>
+          m.map((msg) => (msg.id === assistantId ? { ...msg, text: fullText } : msg))
+        )
+      }
+
+      setAiMessages([...newAiMessages, { role: 'assistant', content: fullText }])
+    } catch {
+      const fallback =
+        "I am having trouble connecting right now. " +
+        "Let me connect you with our team on WhatsApp — they will answer within minutes."
+      setMessages((m) =>
+        m.map((msg) => (msg.id === assistantId ? { ...msg, text: fallback, isStreaming: false } : msg))
+      )
+      setAiMessages([...newAiMessages, { role: 'assistant', content: fallback }])
+    } finally {
+      setIsAiLoading(false)
+      setMessages((m) =>
+        m.map((msg) => (msg.id === assistantId ? { ...msg, isStreaming: false } : msg))
+      )
+    }
+  }
+
   /* ---------- flow navigation ---------- */
 
-  const startFlow = (f: FlowId) => {
+  const startFlow = (f: Exclude<FlowId, 'ai-chat'>) => {
     setFlow(f)
     setStepIndex(0)
     setAnswers({})
@@ -361,14 +438,13 @@ export function WAFloat() {
   }
 
   const handleOptionSelect = (option: Option) => {
-    if (!flow) return
+    if (!flow || flow === 'ai-chat') return
     const currentStep = FLOWS[flow][stepIndex]
     addUserMessage(option.label)
 
     const newAnswers = { ...answers, [currentStep.id]: option.value }
     setAnswers(newAnswers)
 
-    // Determine next step
     let nextIdx = stepIndex + 1
     if (option.next) {
       nextIdx = FLOWS[flow].findIndex((s) => s.id === option.next)
@@ -385,6 +461,12 @@ export function WAFloat() {
 
   const handleInputSubmit = () => {
     if (!flow || !inputValue.trim()) return
+
+    if (flow === 'ai-chat') {
+      sendAiMessage()
+      return
+    }
+
     const currentStep = FLOWS[flow][stepIndex]
     addUserMessage(inputValue.trim())
 
@@ -402,7 +484,7 @@ export function WAFloat() {
     }
   }
 
-  const showHandover = (f: FlowId, ans: Record<string, string>) => {
+  const showHandover = (f: Exclude<FlowId, 'ai-chat'>, ans: Record<string, string>) => {
     const msg = generateHandoverMessage(f, ans)
     setShowTyping(true)
     setTimeout(() => {
@@ -469,7 +551,6 @@ export function WAFloat() {
           >
             {/* --- Header --- */}
             <div className="relative flex items-center justify-between border-b border-[#2a2a2a] bg-[#080808]/80 px-4 py-3 backdrop-blur-xl">
-              {/* Radial glow */}
               <div
                 className="pointer-events-none absolute right-0 top-0 h-32 w-32 opacity-20"
                 style={{
@@ -485,12 +566,16 @@ export function WAFloat() {
 
               <div className="relative flex items-center gap-3">
                 <div className="relative">
-                  <span
-                    className="flex h-9 w-9 items-center justify-center text-lg font-medium italic text-[#c9a96e]"
-                    style={{ fontFamily: 'var(--font-cormorant), Cormorant Garamond, serif' }}
-                  >
-                    m
-                  </span>
+                  {flow === 'ai-chat' ? (
+                    <Bot className="h-6 w-6 text-[#c9a96e]" strokeWidth={1.5} />
+                  ) : (
+                    <span
+                      className="flex h-9 w-9 items-center justify-center text-lg font-medium italic text-[#c9a96e]"
+                      style={{ fontFamily: 'var(--font-cormorant), Cormorant Garamond, serif' }}
+                    >
+                      m
+                    </span>
+                  )}
                   <span className="absolute -bottom-0.5 -right-0.5 flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c9a96e] opacity-40" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#c9a96e]" />
@@ -501,9 +586,11 @@ export function WAFloat() {
                     className="text-sm font-medium tracking-wide text-[#F5F5F0]"
                     style={{ fontFamily: 'var(--font-montserrat), Montserrat, sans-serif' }}
                   >
-                    Aegean Riviera
+                    {flow === 'ai-chat' ? 'AI Concierge' : 'Aegean Riviera'}
                   </p>
-                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#888880]">a private line</p>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#888880]">
+                    {flow === 'ai-chat' ? 'knowledge-powered' : 'a private line'}
+                  </p>
                 </div>
               </div>
 
@@ -552,6 +639,9 @@ export function WAFloat() {
                           {i < msg.text.split('\n').length - 1 && <br />}
                         </span>
                       ))}
+                      {msg.isStreaming && (
+                        <span className="ml-0.5 inline-block h-3 w-1.5 animate-pulse bg-[#c9a96e]/60" />
+                      )}
                     </div>
                   </motion.div>
 
@@ -559,7 +649,8 @@ export function WAFloat() {
                   {msg.from === 'concierge' &&
                     msg.options &&
                     idx === messages.length - 1 &&
-                    !showTyping && (
+                    !showTyping &&
+                    !isAiLoading && (
                       <motion.div
                         initial="hidden"
                         animate="visible"
@@ -569,7 +660,6 @@ export function WAFloat() {
                         }}
                         className="mt-3 grid grid-cols-1 gap-1.5"
                       >
-                        {/* Entry menu is special: bigger cards */}
                         {!flow
                           ? msg.options.map((opt) => (
                               <motion.button
@@ -579,7 +669,13 @@ export function WAFloat() {
                                   visible: { opacity: 1, y: 0 },
                                 }}
                                 transition={{ duration: 0.3 }}
-                                onClick={() => startFlow(opt.value as FlowId)}
+                                onClick={() => {
+                                  if (opt.value === 'ai-chat') {
+                                    startAiChat()
+                                  } else {
+                                    startFlow(opt.value as Exclude<FlowId, 'ai-chat'>)
+                                  }
+                                }}
                                 className="group flex items-start gap-3 border border-[#2a2a2a] bg-transparent px-3.5 py-3 text-left transition-all duration-300 hover:border-[#c9a96e]/50 hover:bg-[#c9a96e]/5"
                               >
                                 <span className="mt-0.5 text-[10px] font-medium text-[#c9a96e]/60 transition-colors group-hover:text-[#c9a96e]">
@@ -617,7 +713,8 @@ export function WAFloat() {
                   {msg.from === 'concierge' &&
                     msg.input &&
                     idx === messages.length - 1 &&
-                    !showTyping && (
+                    !showTyping &&
+                    !isAiLoading && (
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -662,6 +759,33 @@ export function WAFloat() {
                 </motion.div>
               )}
 
+              {/* AI Chat free input (when in ai-chat mode and no input prompt shown) */}
+              {flow === 'ai-chat' && messages.length > 0 && messages[messages.length - 1].from === 'concierge' && !isAiLoading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-2 flex gap-2"
+                >
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && sendAiMessage()}
+                    placeholder="Ask about menus, pricing, chefs, villas..."
+                    className="flex-1 border border-[#2a2a2a] bg-[#111]/60 px-3 py-2 text-[12px] text-[#F5F5F0] outline-none transition-colors placeholder:text-[#888880]/50 focus:border-[#c9a96e]/50"
+                    style={{ fontFamily: 'var(--font-montserrat), Montserrat, sans-serif' }}
+                    autoFocus
+                  />
+                  <button
+                    onClick={sendAiMessage}
+                    disabled={!inputValue.trim() || isAiLoading}
+                    className="flex h-[38px] w-[38px] items-center justify-center border border-[#c9a96e]/40 text-[#c9a96e] transition-all hover:bg-[#c9a96e] hover:text-[#080808] disabled:opacity-30"
+                  >
+                    <Send className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  </button>
+                </motion.div>
+              )}
+
               {/* Skip link */}
               {messages.length > 0 && !flow && !showTyping && (
                 <motion.div
@@ -674,7 +798,7 @@ export function WAFloat() {
                     onClick={skipToDirect}
                     className="text-[11px] text-[#888880]/60 underline underline-offset-2 transition-colors hover:text-[#c9a96e]"
                   >
-                    Skip — message us directly
+                    Skip — message us directly on WhatsApp
                   </button>
                 </motion.div>
               )}
