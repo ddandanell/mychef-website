@@ -1,4 +1,3 @@
-export const ROOT_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN || 'localhost:3000'
 export const MIN_GUESTS = 4
 export const ADHOC_APPROVAL_THRESHOLD = 500000
 export const OFFER_EXPIRY_DAYS = 7

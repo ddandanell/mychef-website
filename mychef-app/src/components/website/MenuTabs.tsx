@@ -100,6 +100,7 @@ export function MenuTabs() {
               <h2 className="text-center font-display text-2xl italic text-white">The Riviera Menu</h2>
               <p className="mt-2 text-center font-body text-xs text-muted">Seven courses through Sicily, Italy, Greece & the Aegean</p>
               <p className="mt-4 text-center font-display text-xl text-gold">IDR 2.200.000 per person · minimum 4 guests</p>
+              <p className="mt-1 text-center font-body text-xs text-muted">2-guest minimum spend: IDR 8,800,000</p>
               <GoldDivider className="my-10" />
               <div className="space-y-8">
                 {rivieraCourses.map((c) => (
@@ -119,6 +120,7 @@ export function MenuTabs() {
               <h2 className="text-center font-display text-2xl italic text-white">The Odyssey Menu</h2>
               <p className="mt-2 text-center font-body text-xs text-muted">Eleven courses · The flagship · Premium wine pairing</p>
               <p className="mt-4 text-center font-display text-xl text-gold">IDR 3.000.000 per person · minimum 4 guests · wine pairing available</p>
+              <p className="mt-1 text-center font-body text-xs text-muted">2-guest minimum spend: IDR 12,000,000</p>
               <GoldDivider className="my-10" />
               <div className="space-y-8">
                 {odysseyCourses.map((c) => (
@@ -143,7 +145,23 @@ export function MenuTabs() {
       <section className="px-4 pb-20">
         <FadeIn>
           <div className="mx-auto max-w-xl">
-            <p className="text-center font-body text-[0.65rem] uppercase tracking-wider text-muted">
+            <div className="space-y-4 border border-[#2a2a2a] bg-surface p-5">
+              <h3 className="font-display text-sm text-gold">What is included</h3>
+              <ul className="space-y-1.5 font-body text-xs text-muted">
+                <li className="flex items-start gap-2"><span className="text-gold">✓</span> Executive chef + 2 trained sous chefs</li>
+                <li className="flex items-start gap-2"><span className="text-gold">✓</span> All cooking equipment & serveware</li>
+                <li className="flex items-start gap-2"><span className="text-gold">✓</span> Premium tableware, linens & glassware</li>
+                <li className="flex items-start gap-2"><span className="text-gold">✓</span> Full table setting & floral arrangement</li>
+                <li className="flex items-start gap-2"><span className="text-gold">✓</span> Kitchen deep-clean after service</li>
+              </ul>
+              <h3 className="mt-4 font-display text-sm text-gold">Not included</h3>
+              <ul className="space-y-1.5 font-body text-xs text-muted">
+                <li className="flex items-start gap-2"><span className="text-[#888880]">–</span> 11% government tax & service charge</li>
+                <li className="flex items-start gap-2"><span className="text-[#888880]">–</span> Wine & beverages (pairing available)</li>
+                <li className="flex items-start gap-2"><span className="text-[#888880]">–</span> Gratuity at your discretion</li>
+              </ul>
+            </div>
+            <p className="mt-6 text-center font-body text-[0.65rem] uppercase tracking-wider text-muted">
               All menus are prepared fresh in your villa. Dietary restrictions accommodated with 48 hours notice.
             </p>
             <Link

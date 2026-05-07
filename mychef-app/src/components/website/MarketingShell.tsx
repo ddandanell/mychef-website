@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { WebNav } from './WebNav'
 import { WebFooter } from './WebFooter'
 import { WAFloat } from './WAFloat'
+import { CookieBanner } from './CookieBanner'
 
 const marketingPaths = ['/', '/experience', '/menus', '/story', '/events', '/book']
 
@@ -25,6 +26,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <WebFooter />
       <WAFloat />
+      <CookieBanner />
     </>
   )
 }
