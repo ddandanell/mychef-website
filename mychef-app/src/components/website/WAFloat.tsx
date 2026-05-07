@@ -91,6 +91,27 @@ const FLOWS: Record<FlowId, FlowStep[]> = {
       question: 'Where?',
       input: { placeholder: 'Villa name or area', key: 'locationText' },
     },
+    {
+      id: 'dietary',
+      question: 'Any dietary restrictions or allergies we should know about?',
+      input: { placeholder: 'e.g. gluten-free, shellfish allergy, halal — or type "none"', key: 'dietary' },
+    },
+    {
+      id: 'occasion-followup',
+      question: 'Is this a special occasion?',
+      options: [
+        { label: 'Birthday', value: 'Birthday' },
+        { label: 'Anniversary', value: 'Anniversary' },
+        { label: 'Date night', value: 'Date night' },
+        { label: 'Business dinner', value: 'Business dinner' },
+        { label: 'Just because', value: 'Just because' },
+      ],
+    },
+    {
+      id: 'notes',
+      question: 'Anything else we should know?',
+      input: { placeholder: 'e.g. surprise cake, wine preference, preferred start time — or type "no"', key: 'notes' },
+    },
   ],
   existing: [
     {
@@ -107,6 +128,11 @@ const FLOWS: Record<FlowId, FlowStep[]> = {
       id: 'reference',
       question: 'Booking reference or email?',
       input: { placeholder: 'e.g. BOOK-2026-001 or your email', key: 'reference' },
+    },
+    {
+      id: 'details',
+      question: 'Tell us more about what you need.',
+      input: { placeholder: 'e.g. add 2 guests, change to gluten-free menu, confirm pickup time', key: 'details' },
     },
   ],
   event: [
@@ -141,6 +167,21 @@ const FLOWS: Record<FlowId, FlowStep[]> = {
         { label: 'Flexible', value: 'Flexible' },
       ],
     },
+    {
+      id: 'vibe',
+      question: 'What is the vibe you are going for?',
+      options: [
+        { label: 'Intimate & refined', value: 'Intimate & refined' },
+        { label: 'Lively celebration', value: 'Lively celebration' },
+        { label: 'Formal dinner', value: 'Formal dinner' },
+        { label: 'Surprise / romantic', value: 'Surprise / romantic' },
+      ],
+    },
+    {
+      id: 'requests',
+      question: 'Any specific dishes, cuisines, or requests in mind?',
+      input: { placeholder: 'e.g. seafood tower, vegan options, live band — or type "open to suggestions"', key: 'requests' },
+    },
   ],
   corporate: [
     {
@@ -157,6 +198,22 @@ const FLOWS: Record<FlowId, FlowStep[]> = {
       id: 'company',
       question: 'Company or property name?',
       input: { placeholder: 'e.g. The Edge Villa, Bali', key: 'company' },
+    },
+    {
+      id: 'frequency',
+      question: 'How many events per month are you planning?',
+      options: [
+        { label: '1–2', value: '1-2 per month' },
+        { label: '3–5', value: '3-5 per month' },
+        { label: '6–10', value: '6-10 per month' },
+        { label: '10+', value: '10+ per month' },
+        { label: 'One-time only', value: 'One-time only' },
+      ],
+    },
+    {
+      id: 'requirements',
+      question: 'Any specific requirements or context?',
+      input: { placeholder: 'e.g. branded menus, dietary policies, preferred chefs, budget range', key: 'requirements' },
     },
   ],
 }
@@ -193,22 +250,30 @@ function generateHandoverMessage(flow: FlowId, answers: Record<string, string>):
       if (answers.date || answers.dateText) lines.push(`Date: ${answers.dateText || answers.date}`)
       if (answers.menu) lines.push(`Menu: ${answers.menu}`)
       if (answers.location || answers.locationText) lines.push(`Location: ${answers.locationText || answers.location}`)
+      if (answers.dietary) lines.push(`Dietary: ${answers.dietary}`)
+      if (answers.occasionFollowup) lines.push(`Occasion: ${answers.occasionFollowup}`)
+      if (answers.notes && answers.notes.toLowerCase() !== 'no') lines.push(`Notes: ${answers.notes}`)
       break
     case 'existing':
       lines.push('Hi myCHEF, I have an existing reservation I need help with.')
       if (answers.need) lines.push(`Request: ${answers.need}`)
       if (answers.reference) lines.push(`Reference: ${answers.reference}`)
+      if (answers.details) lines.push(`Details: ${answers.details}`)
       break
     case 'event':
       lines.push('Hi myCHEF, I would like to discuss a private event.')
       if (answers.occasion) lines.push(`Occasion: ${answers.occasion}`)
       if (answers.guests) lines.push(`Guests: ${answers.guests}`)
       if (answers.timeline) lines.push(`Timeline: ${answers.timeline}`)
+      if (answers.vibe) lines.push(`Vibe: ${answers.vibe}`)
+      if (answers.requests && answers.requests.toLowerCase() !== 'open to suggestions') lines.push(`Requests: ${answers.requests}`)
       break
     case 'corporate':
       lines.push('Hi myCHEF, I would like to discuss a corporate inquiry.')
       if (answers.type) lines.push(`Type: ${answers.type}`)
       if (answers.company) lines.push(`Company: ${answers.company}`)
+      if (answers.frequency) lines.push(`Frequency: ${answers.frequency}`)
+      if (answers.requirements) lines.push(`Requirements: ${answers.requirements}`)
       break
   }
 
