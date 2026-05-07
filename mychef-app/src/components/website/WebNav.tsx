@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Calendar, LogIn } from 'lucide-react'
@@ -53,10 +54,12 @@ export function WebNav() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5">
               <div className="relative h-9 w-9 overflow-hidden rounded-full">
-                <img
+                <Image
                   src="/images/logo-mychef.webp"
                   alt="myCHEF"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
               <div className="flex flex-col">
@@ -102,9 +105,9 @@ export function WebNav() {
               <Link
                 href="/login"
                 className="ml-3 inline-flex items-center gap-1 font-body text-[0.6rem] uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
+                aria-label="Staff login"
               >
                 <LogIn className="h-3 w-3" strokeWidth={1.5} />
-                Team
               </Link>
             </div>
 
@@ -178,14 +181,7 @@ export function WebNav() {
                     onClick={() => setDrawerOpen(false)}
                     className="block py-3 font-body text-sm uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
                   >
-                    Sign in as Team
-                  </Link>
-                  <Link
-                    href="/login"
-                    onClick={() => setDrawerOpen(false)}
-                    className="block py-3 font-body text-sm uppercase tracking-wider text-[#888880] transition-colors hover:text-[#C9A96E]"
-                  >
-                    Sign in as Partner
+                    Staff Login
                   </Link>
                 </motion.div>
               </nav>

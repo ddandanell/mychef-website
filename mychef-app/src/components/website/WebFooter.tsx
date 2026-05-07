@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Phone, Instagram, MapPin, ArrowUp, Mail, LogIn } from 'lucide-react'
 import { CONTACT, getWhatsAppUrl } from '@/lib/contact'
@@ -38,10 +39,11 @@ export function WebFooter() {
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div className="flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <img
+              <Image
                 src="/images/logo-mychef.webp"
                 alt="myCHEF"
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
             <div>
@@ -110,22 +112,14 @@ export function WebFooter() {
           </span>
         </div>
 
-        {/* Staff / Partner */}
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <span className="font-body text-xs text-[#888880]">Team access:</span>
+        {/* Staff Login */}
+        <div className="mt-8">
           <Link
             href="/login"
             className="inline-flex items-center gap-1.5 rounded border border-[#2a2a2a] px-3 py-1.5 font-body text-[0.65rem] uppercase tracking-wider text-[#888880] transition-all hover:border-[#C9A96E] hover:text-[#C9A96E]"
           >
             <LogIn className="h-3 w-3" strokeWidth={1.5} />
-            Sign in as Team
-          </Link>
-          <Link
-            href="/login"
-            className="inline-flex items-center gap-1.5 rounded border border-[#2a2a2a] px-3 py-1.5 font-body text-[0.65rem] uppercase tracking-wider text-[#888880] transition-all hover:border-[#C9A96E] hover:text-[#C9A96E]"
-          >
-            <LogIn className="h-3 w-3" strokeWidth={1.5} />
-            Sign in as Partner
+            Staff Login
           </Link>
         </div>
 
